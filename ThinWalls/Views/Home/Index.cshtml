@@ -13,6 +13,7 @@
     @for (int i = 0; i < ViewBag.Data.Count; i++)
 
     {
+
         <tr>
             @*<td>@ViewBag.Data[i].id</td>*@
             <td><img src="@ViewBag.Data[i].image_url" style="height:100px; width:auto;" /></td>
@@ -24,5 +25,7 @@
 
             @*<td>@ViewBag.Data[i].rating</td>*@
         </tr>
+
+
     }
 </table>

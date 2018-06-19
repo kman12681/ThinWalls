@@ -1,24 +1,20 @@
 ﻿@model IEnumerable<ThinWalls.Models.Review>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "My Reviews";
 }
 
-<h2>Index</h2>
+<h2>My Reviews</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+
+<table class="table table-bordered">
     <tr>
+        
         <th>
-            @Html.DisplayNameFor(model => model.UserID)
+            Business Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.YelpID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WallScore)
+            Wall Score 
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Comment)
@@ -28,10 +24,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        
         <td>
-            @Html.DisplayFor(modelItem => item.UserID)
-        </td>
-        <td>
+            <!--Logic to display businesses based on this Yelp ID-->
             @Html.DisplayFor(modelItem => item.YelpID)
         </td>
         <td>
@@ -41,11 +36,15 @@
             @Html.DisplayFor(modelItem => item.Comment)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ReviewID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ReviewID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ReviewID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ReviewID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ReviewID })
+
         </td>
     </tr>
 }
 
 </table>
+
+<p>
+    Want to write another review? Serach businesses <a href="/Home/Search">here</a>
+</p>

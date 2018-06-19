@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -17,8 +18,14 @@ namespace ThinWalls.Controllers
         // GET: Reviews
         public ActionResult Index()
         {
-            var reviews = db.Reviews.Include(r => r.AspNetUser);
-            return View(db.Reviews.ToList());
+            //user can only view, edit and delete their reviews 
+            string username = User.Identity.GetUserId();
+            List<Review> userReviews =
+                        (from r in db.Reviews
+                        where r.UserID == username
+                         select r).ToList();
+
+            return View(userReviews);
         }
 
         // GET: Reviews/Details/5
