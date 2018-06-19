@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<table class="table table-bordered table table-striped">
+    <tr>
+        @*<th>ID</th>*@
+        <th>Name</th>
+        <th>Address</th>
+        <th>City</th>
+        @*<th>State</th>
+            <th>Zip</th>*@
+        <th></th>
+        <th>Rating</th>
+    </tr>
+    @for (int i = 0; i < ViewBag.Data.Count; i++)
+
+    {
+        <tr>
+            @*<td>@ViewBag.Data[i].id</td>*@
+            <td>@ViewBag.Data[i].name</td>
+            <td>@ViewBag.Data[i]["location"]["address1"]</td>
+            <td>@ViewBag.Data[i]["location"]["city"]</td>
+            @*<td>@ViewBag.Data[i]["location"]["state"]</td>
+                <td>@ViewBag.Data[i]["location"]["zip_code"]</td>*@
+            <td><img src="@ViewBag.Data[i].image_url" style="height:100px; width:auto;" /></td>
+            <td>@ViewBag.Data[i].rating</td>
+        </tr>
+    }
+</table>
