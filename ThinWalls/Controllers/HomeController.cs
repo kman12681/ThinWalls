@@ -13,13 +13,12 @@ namespace ThinWalls.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
-        {
-            HttpWebRequest WR = WebRequest.CreateHttp("https://api.yelp.com/v3/businesses/search?location=1214+GRISWOLD+ST,+DETROIT,+48226&categories=apartments&sort_by=distance");
+        public ActionResult Index(string name = "Grand Circus", string location = "1570+WOODWARD+AVE,+Detroit,+MI,", int zipcode = 48226, string category = "apartments,restaurants,cafes,coffee,desserts,hotels,vocational,localflavor,nightlife", int radius = 2500)
+        {            
+            HttpWebRequest WR = WebRequest.CreateHttp($"https://api.yelp.com/v3/businesses/search?term={name}&location={location},{zipcode}&categories={category}&radius={radius}&sort_by=distance&limit=10");
             WR.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0";
             string key = ConfigurationManager.AppSettings["AuthKey"];
             WR.Headers.Add("Authorization", key);
-
             HttpWebResponse Response;
 
             try
@@ -45,11 +44,8 @@ namespace ThinWalls.Controllers
 
             try
             {
-
                 JObject JsonData = JObject.Parse(Data);
                 ViewBag.Data = JsonData["businesses"];
-
-
 
             }
             catch (Exception e)
@@ -64,7 +60,6 @@ namespace ThinWalls.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
 
             return View();
         }
