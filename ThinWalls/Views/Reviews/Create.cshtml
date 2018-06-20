@@ -18,6 +18,7 @@
         <!--User ID hidden field-->
         <input type="hidden" value="@User.Identity.GetUserId()" name="UserID" />
 
+
         <!--Yelp ID hidden field-->
 
 
@@ -43,6 +44,7 @@
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.Comment, new { style = "width: 400px; height: 200px", @class = "form-control", placeholder = "Your Thoughts" })
                 @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+
 
             </div>
         </div>
