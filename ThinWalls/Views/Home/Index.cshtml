@@ -1,31 +1,33 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home";
 }
 
-<table class="table table-bordered table table-striped">
-    <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Address</th>
-        @*<th>City</th>
-        <th>Rating</th>*@
-    </tr>
-    @for (int i = 0; i < ViewBag.Data.Count; i++)
+<form action="~/Home/Search" method="get">
+    <label>
+        <input type="text" name="name" class="form-control" placeholder="Name - Grand Circus" />
+    </label>
+    <label>
+        <input type="text" name="location" class="form-control" placeholder="Enter location - Detroit" />
+    </label>
+    <label>
+        <input type="text" name="zipcode" class="form-control" placeholder="Zip - 48226" />
+    </label>
+    <input type="submit" value="Search" class="btn btn-primary" />
+    <label>
+        <select name="category">
+            <option disabled selected value> -- all categories -- </option>
+            <option value="apartments">Apartments</option>
+            <option value="hotels">Hotels</option>
+            <option value="cafes">Cafes</option>
+            <option value="vocation">Vocational</option>
+        </select>
+    </label>
+    <label>
+        <select name="radius">
+            <option disabled selected value> -- select a radius -- </option>
+            <option value="500">nearby</option>
+            <option value="8050">within 5 miles</option>            
+        </select>
+    </label>
+</form>
 
-    {
-
-        <tr>
-            @*<td>@ViewBag.Data[i].id</td>*@
-            <td><img src="@ViewBag.Data[i].image_url" style="height:100px; width:auto;" /></td>
-            <td>@ViewBag.Data[i].name</td>
-            <td>
-                @ViewBag.Data[i]["location"]["address1"], @ViewBag.Data[i]["location"]["city"],
-                @ViewBag.Data[i]["location"]["state"], @ViewBag.Data[i]["location"]["zip_code"]
-            </td>
-
-            @*<td>@ViewBag.Data[i].rating</td>*@
-        </tr>
-
-
-    }
-</table>

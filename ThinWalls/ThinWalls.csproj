@@ -314,6 +314,8 @@
     <Content Include="Views\Reviews\Edit.cshtml" />
     <Content Include="Views\Reviews\Index.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\Results.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+}
+
+@Html.ActionLink("Back To Search", "Index", "Home")
+
+<h1>@ViewBag.Data.name</h1>
+<h3>
+    @ViewBag.Data["location"]["address1"], @ViewBag.Data["location"]["city"],
+    @ViewBag.Data["location"]["state"], @ViewBag.Data["location"]["zip_code"]
+</h3>
+
+<div>
+    <img src="@ViewBag.Data.image_url" style="height:300px; width:auto;" />
+</div>
+
+
+
+
+
+
+<style>
+    /* Set the size of the div element that contains the map */
+    #map {
+        height: 400px; /* The height is 400 pixels */
+        width: 100%; /* The width is the width of the web page */
+    }
+</style>
+
+<div id="map"></div>
+<script>
+// Initialize and add the map
+function initMap() {
+  // The location of business
+    //var key = ConfigurationManager.AppSettings["GoogKey"];
+    var uluru = {lat: @ViewBag.Data["coordinates"]["latitude"], lng: @ViewBag.Data["coordinates"]["longitude"]};
+    // The map, centered at Business
+    var map = new google.maps.Map(
+    document.getElementById('map'), {zoom: 15, center: uluru});
+    // The marker, positioned at Business
+    var marker = new google.maps.Marker({position: uluru, map: map});
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBr3luFOAqzGZTAQb6YtRIJCztsoI_-Wpo&callback=initMap">
+
+</script>
+
