@@ -100,7 +100,7 @@ namespace ThinWalls.Controllers
 
             try
             {
-                JObject JsonData = JObject.Parse(Data);
+                JObject JsonData = JObject.Parse(Data);               
                 ViewBag.Data = JsonData;
 
             }

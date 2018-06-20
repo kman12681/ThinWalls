@@ -73,6 +73,7 @@
           <Property Name="ReviewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="YelpID" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BusinessName" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="WallScore" Type="int" Nullable="false" />
           <Property Name="Comment" Type="nvarchar" MaxLength="250" />
         </EntityType>
@@ -203,6 +204,7 @@
           <Property Name="WallScore" Type="Int32" Nullable="false" />
           <Property Name="Comment" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="ThinWallsModel.FK_Reviews_AspNetUsers" FromRole="Review" ToRole="AspNetUser" />
+          <Property Name="BusinessName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="ThinWallsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Reviews" EntityType="Self.Review" />
@@ -359,6 +361,7 @@
           <EntitySetMapping Name="Reviews">
             <EntityTypeMapping TypeName="ThinWallsModel.Review">
               <MappingFragment StoreEntitySet="Reviews">
+                <ScalarProperty Name="BusinessName" ColumnName="BusinessName" />
                 <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="YelpID" ColumnName="YelpID" />

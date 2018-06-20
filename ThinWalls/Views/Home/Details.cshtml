@@ -6,6 +6,7 @@
 @Html.ActionLink("Back To Search", "Index", "Home")
 
 <h1>@ViewBag.Data.name</h1>
+@*<h2>@ViewBag.Data.id</h2>*@
 <h3>
     @ViewBag.Data["location"]["address1"], @ViewBag.Data["location"]["city"],
     @ViewBag.Data["location"]["state"], @ViewBag.Data["location"]["zip_code"]
@@ -15,7 +16,13 @@
     <img src="@ViewBag.Data.image_url" style="height:300px; width:auto;" />
 </div>
 
+<form action="~/Reviews/Create">
+    <input type="hidden" value="@ViewBag.Data.id" name="id" />
+    <input type="hidden" value="@ViewBag.Data.name" name="name" />
+    <input type="submit" value="Leave Review" />
 
+</form>
+@*<a href="~/Reviews/Create/@ViewBag.Data.id">Leave Review</a>*@
 
 
 

@@ -18,11 +18,12 @@ namespace ThinWalls.Controllers
         // GET: Reviews
         public ActionResult Index()
         {
+
             //user can only view, edit and delete their reviews 
             string username = User.Identity.GetUserId();
             List<Review> userReviews =
                         (from r in db.Reviews
-                        where r.UserID == username
+                         where r.UserID == username
                          select r).ToList();
 
             return View(userReviews);
@@ -44,10 +45,13 @@ namespace ThinWalls.Controllers
         }
 
         // GET: Reviews/Create
-        [Authorize]
-        public ActionResult Create(string YelpID)
+        //[Authorize]
+        //[HttpPost()]
+        //[ValidateAntiForgeryToken()]
+        public ActionResult Create(string id, string name)
         {
-            ViewBag.ID = YelpID;
+            ViewBag.ID = id;
+            ViewBag.Name = name;
             return View();
         }
 
@@ -56,7 +60,7 @@ namespace ThinWalls.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ReviewID,UserID,YelpID,WallScore,Comment")] Review review)
+        public ActionResult Create([Bind(Include = "ReviewID,UserID,YelpID,BusinessName,WallScore,Comment")] Review review)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +92,7 @@ namespace ThinWalls.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ReviewID,UserID,YelpID,WallScore,Comment")] Review review)
+        public ActionResult Edit([Bind(Include = "ReviewID,UserID,YelpID,BusinessName,WallScore,Comment")] Review review)
         {
             if (ModelState.IsValid)
             {

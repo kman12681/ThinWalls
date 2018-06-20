@@ -19,6 +19,7 @@ namespace ThinWalls.Models
         public string YelpID { get; set; }
         public int WallScore { get; set; }
         public string Comment { get; set; }
+        public string BusinessName { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
     }

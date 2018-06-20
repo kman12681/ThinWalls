@@ -9,49 +9,48 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <hr />
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <hr />
 
-    <!--User ID hidden field-->
-    <input type="hidden" value="@User.Identity.GetUserId()" name="UserID" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.YelpID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <!--User ID hidden field-->
+        <input type="hidden" value="@User.Identity.GetUserId()" name="UserID" />
+
+        <!--Yelp ID hidden field-->
+
+
+        <input type="hidden" value="@ViewBag.ID" name="YelpID" />
+        <input type="hidden" value="@ViewBag.Name" name="BusinessName" />
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WallScore, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.YelpID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.YelpID, "", new { @class = "text-danger" })
+                @Html.RadioButtonFor(model => model.WallScore, "1") 1
+                @Html.RadioButtonFor(model => model.WallScore, "2") 2
+                @Html.RadioButtonFor(model => model.WallScore, "3") 3
+                @Html.RadioButtonFor(model => model.WallScore, "4") 4
+                @Html.RadioButtonFor(model => model.WallScore, "5") 5
+                @Html.ValidationMessageFor(model => model.WallScore, "", new { @class = "text-danger" })
             </div>
-        </div>*@
-
-    <!--Yelp ID hidden field-->
-    <input type="hidden" value="@ViewBag.ID" name="YelpID" />
-
-
-    @Html.LabelFor(model => model.WallScore, htmlAttributes: new { @class = "control-label col-md-2" })
-
-
-    <label>1<input type="radio" name="wallscore" value="1"></label>
-    <label>2<input type="radio" name="wallscore" value="2"></label>
-    <label>3<input type="radio" name="wallscore" value="3"></label>
-    <label>4<input type="radio" name="wallscore" value="4"></label>
-    <label>5<input type="radio" name="wallscore" value="5"></label>
-
-
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <textarea name="comment" rows="10" cols="50"></textarea>
-
-
-            @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
         </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Comment, new { style = "width: 400px; height: 200px", @class = "form-control", placeholder = "Your Thoughts" })
+                @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
         </div>
     </div>
 

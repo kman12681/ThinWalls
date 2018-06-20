@@ -27,7 +27,7 @@
         
         <td>
             <!--Logic to display businesses based on this Yelp ID-->
-            @Html.DisplayFor(modelItem => item.YelpID)
+            @Html.DisplayFor(modelItem => item.BusinessName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.WallScore)
@@ -46,5 +46,5 @@
 </table>
 
 <p>
-    Want to write another review? Serach businesses <a href="/Home/Search">here</a>
+    Want to write another review? Search businesses <a href="/Home/Search">here</a>
 </p>
