@@ -16,13 +16,17 @@
     <!--User ID hidden field-->
     <input type="hidden" value="@User.Identity.GetUserId()" name="UserID" />
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.YelpID, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.YelpID, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.YelpID, "", new { @class = "text-danger" })
-        </div>
-    </div>
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.YelpID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.YelpID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.YelpID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <!--Yelp ID hidden field-->
+    <input type="hidden" value="@ViewBag.ID" name="YelpID" />
+
 
     @Html.LabelFor(model => model.WallScore, htmlAttributes: new { @class = "control-label col-md-2" })
 

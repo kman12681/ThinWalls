@@ -44,8 +44,10 @@ namespace ThinWalls.Controllers
         }
 
         // GET: Reviews/Create
-        public ActionResult Create()
+        [Authorize]
+        public ActionResult Create(string YelpID)
         {
+            ViewBag.ID = YelpID;
             return View();
         }
 
