@@ -21,7 +21,6 @@
         @Html.HiddenFor(model => model.ReviewID)
         @Html.HiddenFor(model => model.AspNetUser)
         @Html.HiddenFor(model => model.BusinessName)
-      
 
         <!--User name is hidden here, to not allow user to edit it-->
         <input type="hidden" value="@User.Identity.GetUserId()" name="UserID" />
@@ -29,6 +28,8 @@
         <!--Yelp ID is currently hard-coded in when you edit. Need to create a way to not change it-->
         <input type="hidden" value="@ViewBag.ID" name="YelpID" />
 
+
+   
 
         <div class="form-group">
             @Html.LabelFor(model => model.WallScore, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -67,7 +68,9 @@
     <div>
         @Html.ActionLink("Back to Your Reviews", "Index")
     </div>
+
 }
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
