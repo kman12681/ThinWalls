@@ -316,6 +316,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\Results.cshtml" />
+    <Content Include="Views\Reviews\AlreadyReviewed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

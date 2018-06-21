@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNet.Identity
 @model ThinWalls.Models.Review
 
+
 @{
     ViewBag.Title = "Edit";
 }
@@ -12,39 +13,25 @@
 {
     @Html.AntiForgeryToken()
 
+    <h1>@Html.DisplayNameFor(model => model.BusinessName)</h1>
 
     <div class="form-horizontal">
+
 
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ReviewID)
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.UserID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
+        @Html.HiddenFor(model => model.AspNetUser)
+        @Html.HiddenFor(model => model.BusinessName)
+      
 
         <!--User name is hidden here, to not allow user to edit it-->
         <input type="hidden" value="@User.Identity.GetUserId()" name="UserID" />
 
         <!--Yelp ID is currently hard-coded in when you edit. Need to create a way to not change it-->
         <input type="hidden" value="5" name="YelpID" />
-<<<<<<< HEAD
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.YelpID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.YelpID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.YelpID, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-=======
-    
 
->>>>>>> edit view
         <div class="form-group">
             @Html.LabelFor(model => model.WallScore, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -71,10 +58,9 @@
 
 
 
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Update Review" class="btn btn-primary" />
 
             </div>
         </div>
@@ -83,7 +69,7 @@
     <div>
         @Html.ActionLink("Back to Your Reviews", "Index")
     </div>
-
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

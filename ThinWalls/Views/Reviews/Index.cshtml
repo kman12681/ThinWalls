@@ -24,10 +24,10 @@
 
 @foreach (var item in Model) {
     <tr>
-        
+
         <td>
             <!--Logic to display businesses based on this Yelp ID-->
-            @Html.DisplayFor(modelItem => item.BusinessName)
+            <a href="~/Home/Details/@Html.DisplayFor(modelItem => item.YelpID)">@Html.DisplayFor(modelItem => item.BusinessName)</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.WallScore)
@@ -36,7 +36,7 @@
             @Html.DisplayFor(modelItem => item.Comment)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ReviewID }) |
+            @Html.ActionLink("Update", "Edit", new { id = item.ReviewID }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.ReviewID })
 
         </td>
@@ -46,5 +46,5 @@
 </table>
 
 <p>
-    Want to write another review? Search businesses <a href="/Home/Search">here</a>
+    Want to write another review? Search businesses <a href="/Home/Index">here</a>
 </p>

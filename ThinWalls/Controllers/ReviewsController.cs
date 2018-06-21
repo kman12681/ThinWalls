@@ -45,14 +45,22 @@ namespace ThinWalls.Controllers
         }
 
         // GET: Reviews/Create
-        //[Authorize]
-        //[HttpPost()]
-        //[ValidateAntiForgeryToken()]
+
+        [Authorize]       
         public ActionResult Create(string id, string name)
         {
-            ViewBag.ID = id;
-            ViewBag.Name = name;
-            return View();
+            List<Review> reviews = (from r in db.Reviews
+                                    where r.YelpID == id
+                                    select r).ToList();
+            if (reviews != null)
+            {
+                return View("AlreadyReviewed");
+            }
+            else {
+                ViewBag.ID = id;
+                ViewBag.Name = name;
+                return View();
+            }
         }
 
         // POST: Reviews/Create
