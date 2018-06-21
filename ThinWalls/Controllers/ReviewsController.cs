@@ -46,17 +46,18 @@ namespace ThinWalls.Controllers
 
         // GET: Reviews/Create
 
-        [Authorize]       
-        public ActionResult Create(string id, string name)
+        [Authorize]
+        public ActionResult Create(string id, string name, string userId)
         {
-            List<Review> reviews = (from r in db.Reviews
-                                    where r.YelpID == id
-                                    select r).ToList();
-            if (reviews != null)
+            Review review = (from r in db.Reviews
+                             where r.UserID == userId
+                             select r).Single();
+            if (review != null)
             {
                 return View("AlreadyReviewed");
             }
-            else {
+            else
+            {
                 ViewBag.ID = id;
                 ViewBag.Name = name;
                 return View();
