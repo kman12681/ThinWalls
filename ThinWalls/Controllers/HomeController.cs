@@ -8,6 +8,7 @@ using ThinWalls.Models;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Configuration;
+using System.Collections;
 
 namespace ThinWalls.Controllers
 {
@@ -55,30 +56,24 @@ namespace ThinWalls.Controllers
                 ViewBag.Data = JsonData["businesses"];
 
                 //Logic for displaying score on results page
-                ThinWallsEntities db = new ThinWallsEntities(); //pulls info from db
-                int average = 0;
-                List<Review> revlist = new List<Review>();
-                
-                for (int i = 0; i < JsonData["businesses"].Count(); i++)
+                ThinWallsEntities db = new ThinWallsEntities(); //pulls info from db    
+                Dictionary<string, int> scores = new Dictionary<string, int>();
+                List<Review> reviews = db.Reviews.ToList();
+
+                for (int i = 0; i < reviews.Count; i++)
                 {
                     var id = JsonData["businesses"][i]["id"];
-                    revlist = (from r in db.Reviews
-                               where r.YelpID == (string)(id)
-                               select r).ToList();
+
+                    if (reviews[i].YelpID == (string)id)
+                    {
+                        scores.Add(reviews[i].YelpID, reviews[i].WallScore);
+                    }
+
                 }
-                foreach (var r in revlist)
-                {
-                    average += r.WallScore;
-                }
-                if (average == 0)
-                {
-                    ViewBag.Score = "No reviews yet. Be the first!";
-                }
-                else
-                {
-                    average = average / revlist.Count; //calculates average of all the scores
-                    ViewBag.Score = average; //so view can access the info            
-                }
+
+                ViewBag.Scores = scores;
+
+
             }
             catch (Exception e)
             {
@@ -91,7 +86,7 @@ namespace ThinWalls.Controllers
 
         }
 
-        
+
         public ActionResult Details(string id)
         {
             HttpWebRequest WR = WebRequest.CreateHttp($"https://api.yelp.com/v3/businesses/{id}");
@@ -123,7 +118,7 @@ namespace ThinWalls.Controllers
 
             try
             {
-                JObject JsonData = JObject.Parse(Data);               
+                JObject JsonData = JObject.Parse(Data);
                 ViewBag.Data = JsonData;
 
             }
@@ -136,15 +131,16 @@ namespace ThinWalls.Controllers
 
             //Calculate Wall Score Logic
             ThinWallsEntities db = new ThinWallsEntities(); //pulls info from db
+
             List<Review> reviews = (from r in db.Reviews
-                                 where r.YelpID == id
-                                 select r).ToList(); //pulls only item w/ matching yelpid
+                                    where r.YelpID == id
+                                    select r).ToList(); //pulls only item w/ matching yelpid
             ViewBag.Reviews = reviews;
             int average = 0;
-            foreach(var r in reviews)
+            foreach (var r in reviews)
             {
                 average += r.WallScore;
-            }            
+            }
             if (average == 0)
             {
                 ViewBag.Score = "No reviews yet. Be the first!";
@@ -154,11 +150,15 @@ namespace ThinWalls.Controllers
                 average = average / reviews.Count; //calculates average of all the scores
                 ViewBag.Score = average; //so view can access the info            
             }
-            
+
             return View();
         }
 
-               
+        //var id = JsonData["businesses"][i]["id"];
+        //data = (Review)(from r in db.Reviews
+        //           where r.YelpID == (string)(id)
+        //           select r).Single();
+        //revlist.Add(data);
 
 
     }

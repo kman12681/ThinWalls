@@ -6,14 +6,12 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit Review</h2>
-
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <h1>@Html.DisplayNameFor(model => model.BusinessName)</h1>
+    <h1>@Html.DisplayTextFor(model => model.BusinessName)</h1>
 
     <div class="form-horizontal">
 
@@ -29,7 +27,7 @@
         <input type="hidden" value="@User.Identity.GetUserId()" name="UserID" />
 
         <!--Yelp ID is currently hard-coded in when you edit. Need to create a way to not change it-->
-        <input type="hidden" value="5" name="YelpID" />
+        <input type="hidden" value="@ViewBag.ID" name="YelpID" />
 
 
         <div class="form-group">

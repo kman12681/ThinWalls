@@ -47,22 +47,14 @@ namespace ThinWalls.Controllers
         // GET: Reviews/Create
 
         [Authorize]
-        public ActionResult Create(string id, string name, string userId)
+        public ActionResult Create(string id, string name)
         {
-            Review review = (from r in db.Reviews
-                             where r.UserID == userId
-                             select r).Single();
-            if (review != null)
-            {
-                return View("AlreadyReviewed");
-            }
-            else
-            {
-                ViewBag.ID = id;
-                ViewBag.Name = name;
-                return View();
-            }
+
+            ViewBag.ID = id;
+            ViewBag.Name = name;
+            return View();
         }
+          
 
         // POST: Reviews/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -82,8 +74,7 @@ namespace ThinWalls.Controllers
         }
 
         // GET: Reviews/Edit/5
-        public ActionResult Edit(int? id)
-        {
+        public ActionResult Edit(int? id) { 
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -93,6 +84,8 @@ namespace ThinWalls.Controllers
             {
                 return HttpNotFound();
             }
+
+           
             return View(review);
         }
 
