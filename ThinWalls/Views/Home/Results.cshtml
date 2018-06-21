@@ -40,10 +40,10 @@
 <table class="table table-bordered table table-striped">
     <tr>
         @*<th></th>
-            <th>Name</th>
-            <th>Address</th>*@
+        <th>Name</th>
+        <th>Address</th>*@
         @*<th>City</th>
-            <th>Rating</th>*@
+        <th>Rating</th>*@
     </tr>
     @for (int i = 0; i < ViewBag.Data.Count; i++)
 
@@ -57,7 +57,13 @@
             <td>
                 @ViewBag.Data[i]["location"]["address1"], @ViewBag.Data[i]["location"]["city"],
                 @ViewBag.Data[i]["location"]["state"], @ViewBag.Data[i]["location"]["zip_code"]
-            </td>           
+            </td> 
+            <td>
+                <!--Logic for the wall score goes here-->
+                    
+                    @ViewBag.Score
+
+            </td>
         </tr>
     }
 </table>
