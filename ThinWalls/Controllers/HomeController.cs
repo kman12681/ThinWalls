@@ -37,14 +37,14 @@ namespace ThinWalls.Controllers
             {
                 ViewBag.Error = "Exception";
                 ViewBag.ErrorDescription = e.Message;
-                return View();
+                return View("Results");
             }
 
             if (Response.StatusCode != HttpStatusCode.OK)
             {
                 ViewBag.Error = Response.StatusCode;
                 ViewBag.ErrorDescription = Response.StatusDescription;
-                return View();
+                return View("Results");
             }
 
             StreamReader reader = new StreamReader(Response.GetResponseStream());
@@ -58,17 +58,23 @@ namespace ThinWalls.Controllers
                 //Logic for displaying score on results page
                 ThinWallsEntities db = new ThinWallsEntities(); //pulls info from db    
                 Dictionary<string, int> scores = new Dictionary<string, int>();
+                
                 List<Review> reviews = db.Reviews.ToList();
 
                 for (int i = 0; i < reviews.Count; i++)
                 {
-                    var id = JsonData["businesses"][i]["id"];
-
-                    if (reviews[i].YelpID == (string)id)
+                    for (int j = 0; j < ViewBag.Data.Count; j++)
                     {
-                        scores.Add(reviews[i].YelpID, reviews[i].WallScore);
-                    }
+                        var id = JsonData["businesses"][j]["id"];
 
+                        if (reviews[i].YelpID == (string)id)
+                        {
+                            if (!scores.ContainsKey(reviews[i].YelpID))
+                            {
+                                scores.Add(reviews[i].YelpID, reviews[i].WallScore);
+                            }
+                        }
+                    }
                 }
 
                 ViewBag.Scores = scores;
@@ -79,7 +85,7 @@ namespace ThinWalls.Controllers
             {
                 ViewBag.Error = "JSON Issue";
                 ViewBag.ErrorDescription = e.Message;
-                return View();
+                return View("Results");
             }
 
             return View("Results");
@@ -152,13 +158,7 @@ namespace ThinWalls.Controllers
             }
 
             return View();
-        }
-
-        //var id = JsonData["businesses"][i]["id"];
-        //data = (Review)(from r in db.Reviews
-        //           where r.YelpID == (string)(id)
-        //           select r).Single();
-        //revlist.Add(data);
+        }  
 
 
     }

@@ -17,9 +17,9 @@ namespace ThinWalls.Models
         public int ReviewID { get; set; }
         public string UserID { get; set; }
         public string YelpID { get; set; }
+        public string BusinessName { get; set; }
         public int WallScore { get; set; }
         public string Comment { get; set; }
-        public string BusinessName { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
     }

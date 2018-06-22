@@ -3,6 +3,8 @@
     ViewBag.Title = "Results";
 }
 
+@ViewBag.Error
+@ViewBag.ErrorDescription
 
 <div class="jumbotron">
     <div class="container text-center">
@@ -16,25 +18,23 @@
             <label>
                 <input type="text" name="zipcode" class="form-control" placeholder="Zip - 48226" />
             </label>
-            <input type="submit" value="Search" class="btn btn-primary" />
             <label>
                 <select name="category">
-                    <option disabled selected value> -- all categories -- </option>
+                    <option disabled selected value> -- choose categories -- </option>
                     <option value="apartments">Apartments</option>
                     <option value="hotels">Hotels</option>
                     <option value="restaurants">Restaurants</option>
                     <option value="cafes">Cafes</option>
                 </select>
             </label>
-            <label>
-                <select name="radius">
-                    <option disabled selected value> -- select a radius -- </option>
-
-
-                    <option value="500">nearby</option>
-                    <option value="8050">within 5 miles</option>
-                </select>
-            </label>
+            @*<label>
+                    <select name="radius">
+                        <option disabled selected value> -- select a radius -- </option>
+                        <option value="500">nearby</option>
+                        <option value="8050">within 5 miles</option>
+                    </select>
+                </label>*@
+            <input type="submit" value="Search" class="btn btn-primary" />
         </form>
     </div>
 </div>
@@ -54,23 +54,23 @@
                 @ViewBag.Data[i]["location"]["address1"], @ViewBag.Data[i]["location"]["city"],
                 @ViewBag.Data[i]["location"]["state"], @ViewBag.Data[i]["location"]["zip_code"]
             </td>
+
+            <!--Logic for the wall score goes here-->
             <td>
                 <!--Logic for the wall score goes here-->
-
-                @ViewBag.Score
-
+                @{
+                    var scoreKey = ViewBag.Data[i].id.Value;
+                }
+                @if (ViewBag.Scores.ContainsKey(scoreKey))
+                {
+                    <text>
+                        @ViewBag.Scores[scoreKey]
+                    </text>
+                }
             </td>
         </tr>
     }
 </table>
 
- if (sum == 0)
-                    {
-                        ViewBag.Score = "No reviews yet. Be the first!";
-                    }
-                    else
-                    {
-                        average = sum / reviews.Count; //calculates average of all the scores
-                        ViewBag.Score = average; //so view can access the info
-                    }
+
 

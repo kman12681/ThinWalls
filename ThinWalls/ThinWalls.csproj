@@ -203,39 +203,39 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetRole.cs">
-      <DependentUpon>ThinWallsModel.tt</DependentUpon>
+      <DependentUpon>ThinWalls.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUser.cs">
-      <DependentUpon>ThinWallsModel.tt</DependentUpon>
+      <DependentUpon>ThinWalls.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserClaim.cs">
-      <DependentUpon>ThinWallsModel.tt</DependentUpon>
+      <DependentUpon>ThinWalls.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserLogin.cs">
-      <DependentUpon>ThinWallsModel.tt</DependentUpon>
+      <DependentUpon>ThinWalls.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C__MigrationHistory.cs">
-      <DependentUpon>ThinWallsModel.tt</DependentUpon>
+      <DependentUpon>ThinWalls.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Review.cs">
-      <DependentUpon>ThinWallsModel.tt</DependentUpon>
+      <DependentUpon>ThinWalls.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ThinWallsModel.Context.cs">
+    <Compile Include="Models\ThinWalls.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ThinWallsModel.Context.tt</DependentUpon>
+      <DependentUpon>ThinWalls.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ThinWallsModel.cs">
+    <Compile Include="Models\ThinWalls.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ThinWallsModel.tt</DependentUpon>
+      <DependentUpon>ThinWalls.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ThinWallsModel.Designer.cs">
+    <Compile Include="Models\ThinWalls.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ThinWallsModel.edmx</DependentUpon>
+      <DependentUpon>ThinWalls.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -247,30 +247,30 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\ThinWallsModel.Context.tt">
+    <Content Include="Models\ThinWalls.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ThinWallsModel.edmx</DependentUpon>
-      <LastGenOutput>ThinWallsModel.Context.cs</LastGenOutput>
+      <DependentUpon>ThinWalls.edmx</DependentUpon>
+      <LastGenOutput>ThinWalls.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\ThinWallsModel.tt">
+    <Content Include="Models\ThinWalls.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ThinWallsModel.edmx</DependentUpon>
-      <LastGenOutput>ThinWallsModel.cs</LastGenOutput>
+      <DependentUpon>ThinWalls.edmx</DependentUpon>
+      <LastGenOutput>ThinWalls.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\ThinWallsModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ThinWallsModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ThinWallsModel.edmx.diagram">
-      <DependentUpon>ThinWallsModel.edmx</DependentUpon>
-    </Content>
     <Content Include=".gitignore" />
     <Content Include="Web.config" />
+    <EntityDeploy Include="Models\ThinWalls.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ThinWalls.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ThinWalls.edmx.diagram">
+      <DependentUpon>ThinWalls.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

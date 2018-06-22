@@ -26,10 +26,11 @@
         <input type="hidden" value="@User.Identity.GetUserId()" name="UserID" />
 
         <!--Yelp ID is currently hard-coded in when you edit. Need to create a way to not change it-->
-        <input type="hidden" value="@ViewBag.ID" name="YelpID" />
+        <input type="hidden" value="@Model.YelpID" name="YelpID" />
+        @*5RzjHiZmwyccyh0kv-Z4Yg*@
 
 
-   
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.WallScore, htmlAttributes: new { @class = "control-label col-md-2" })
