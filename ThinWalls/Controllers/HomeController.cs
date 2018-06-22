@@ -96,7 +96,9 @@ namespace ThinWalls.Controllers
             {
                 ViewBag.Error = "JSON Issue";
 
+
                 ViewBag.ErrorDescription = e.Message;
+
 
                 return View("Results");
             }
