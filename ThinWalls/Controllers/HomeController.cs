@@ -56,11 +56,12 @@ namespace ThinWalls.Controllers
                 ViewBag.Data = JsonData["businesses"];
 
                 //Logic for displaying score on results page
-                ThinWallsEntities db = new ThinWallsEntities(); //pulls info from db    
-                Dictionary<string, int> scores = new Dictionary<string, int>();
 
-                List<Review> reviews = db.Reviews.ToList();
+                ThinWallsEntities db = new ThinWallsEntities(); //pulls info from db  
+                Dictionary<string, int> scores = new Dictionary<string, int>(); //Dictionary to hold id and average
+                List<Review> reviews = db.Reviews.ToList(); 
                 List<int> scoreList = new List<int>();
+                int counter = 1;
 
 
                 for (int i = 0; i < reviews.Count; i++)
@@ -70,15 +71,26 @@ namespace ThinWalls.Controllers
                         var id = JsonData["businesses"][j]["id"];
 
                         if (reviews[i].YelpID == (string)id)
-                        {
+                        {                            
                             if (!scores.ContainsKey(reviews[i].YelpID))
                             {
                                 scores.Add(reviews[i].YelpID, reviews[i].WallScore);
                             }
+                            else
+                            {
+                                counter++;
+                                scores[reviews[i].YelpID] += reviews[i].WallScore;
+                            }
                         }
+                        //if (counter > 1)
+                        //{
+                        //    scores[reviews[i].YelpID] = (scores[reviews[i].YelpID] / counter);
+                        //}
                     }
+                    
                 }
                 ViewBag.Scores = scores;
+
             }
             catch (Exception e)
             {
