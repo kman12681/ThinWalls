@@ -58,10 +58,10 @@ namespace ThinWalls.Controllers
                 //Logic for displaying score on results page
                 ThinWallsEntities db = new ThinWallsEntities(); //pulls info from db    
                 Dictionary<string, int> scores = new Dictionary<string, int>();
-                
+
                 List<Review> reviews = db.Reviews.ToList();
                 List<int> scoreList = new List<int>();
-                
+
 
                 for (int i = 0; i < reviews.Count; i++)
                 {
@@ -83,11 +83,9 @@ namespace ThinWalls.Controllers
             catch (Exception e)
             {
                 ViewBag.Error = "JSON Issue";
-<<<<<<< HEAD
+
                 ViewBag.ErrorDescription = e.Message;
-=======
-                ViewBag.ErrorDescription = e.ToString();
->>>>>>> Created dictionary for holding averages
+
                 return View("Results");
             }
 
@@ -152,16 +150,59 @@ namespace ThinWalls.Controllers
             }
             if (average == 0)
             {
-                ViewBag.Score = "No reviews yet. Be the first!";
+                ViewBag.Score = average;
             }
             else
             {
                 average = average / reviews.Count; //calculates average of all the scores
-                ViewBag.Score = average; //so view can access the info            
+                ViewBag.Score = average; //so view can access the info           
+
             }
 
+            HttpWebRequest WR2 = WebRequest.CreateHttp($"https://api.yelp.com/v3/businesses/{id}/reviews");
+            WR2.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0";
+            //string key2 = ConfigurationManager.AppSettings["AuthKey"];
+            WR2.Headers.Add("Authorization", key);
+            HttpWebResponse Response2;
+
+            try
+            {
+                Response2 = (HttpWebResponse)WR2.GetResponse();
+            }
+            catch (WebException e)
+            {
+                ViewBag.Error = "Exception";
+                ViewBag.ErrorDescription = e.Message;
+                return View();
+            }
+
+            if (Response.StatusCode != HttpStatusCode.OK)
+            {
+                ViewBag.Error = Response2.StatusCode;
+                ViewBag.ErrorDescription = Response2.StatusDescription;
+                return View();
+            }
+
+            StreamReader reader2 = new StreamReader(Response2.GetResponseStream());
+            string yelpReviews = reader2.ReadToEnd();
+
+            try
+            {
+                JObject JsonData2 = JObject.Parse(yelpReviews);
+                ViewBag.YelpReviews = JsonData2["reviews"];
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = "JSON Issue";
+                ViewBag.ErrorDescription = e.Message;
+                return View();
+            }
+
+
+
             return View();
-        }  
+        }
 
 
     }

@@ -2,103 +2,79 @@
 @{
     ViewBag.Title = "Results";
 
-<<<<<<< HEAD
-@ViewBag.Error
-@ViewBag.ErrorDescription
-=======
-}
->>>>>>> Created dictionary for holding averages
+    @ViewBag.Error
+    @ViewBag.ErrorDescription
 
-@ViewBag.Error
-@ViewBag.ErrorDescription
-<div class="jumbotron">
-    <div class="container text-center">
-        <form action="~/Home/Search" method="get">
-            <label>
-                <input type="text" name="name" class="form-control" placeholder="Name - Grand Circus" />
-            </label>
-            <label>
-                <input type="text" name="location" class="form-control" placeholder="Enter location - Detroit" />
-            </label>
-            <label>
-                <input type="text" name="zipcode" class="form-control" placeholder="Zip - 48226" />
-            </label>
-            <label>
-                <select name="category">
-                    <option disabled selected value> -- choose categories -- </option>
-                    <option value="apartments">Apartments</option>
-                    <option value="hotels">Hotels</option>
-                    <option value="restaurants">Restaurants</option>
-                    <option value="cafes">Cafes</option>
-                </select>
-            </label>
-            @*<label>
-                    <select name="radius">
-                        <option disabled selected value> -- select a radius -- </option>
-                        <option value="500">nearby</option>
-                        <option value="8050">within 5 miles</option>
+    <div class="jumbotron">
+        <div class="container text-center">
+            <form action="~/Home/Search" method="get">
+                <label>
+                    <input type="text" name="name" class="form-control" placeholder="Name - Grand Circus" />
+                </label>
+                <label>
+                    <input type="text" name="location" class="form-control" placeholder="Enter location - Detroit" />
+                </label>
+                <label>
+                    <input type="text" name="zipcode" class="form-control" placeholder="Zip - 48226" />
+                </label>
+                <label>
+                    <select name="category">
+                        <option disabled selected value> -- choose categories -- </option>
+                        <option value="apartments">Apartments</option>
+                        <option value="hotels">Hotels</option>
+                        <option value="restaurants">Restaurants</option>
+                        <option value="cafes">Cafes</option>
                     </select>
-                </label>*@
-            <input type="submit" value="Search" class="btn btn-primary" />
-        </form>
+                </label>
+                @*<label>
+                        <select name="radius">
+                            <option disabled selected value> -- select a radius -- </option>
+                            <option value="500">nearby</option>
+                            <option value="8050">within 5 miles</option>
+                        </select>
+                    </label>*@
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </form>
+        </div>
     </div>
-</div>
 
-<table class="table table-bordered table table-striped">
+    <table class="table table-bordered table table-striped">
 
-    @for (int i = 0; i < ViewBag.Data.Count; i++)
+        @for (int i = 0; i < ViewBag.Data.Count; i++)
 
-    {
+        {
 
-        <tr>
-            @*<td>@ViewBag.Data[i].id</td>*@
-            <td><img src="@ViewBag.Data[i].image_url" style="height:100px; width:auto;" /></td>
-            @*<td>@Html.ActionLink("ViewBag.Data[i].name", "Details", new { @ViewBag.Data[i].name })</td>*@
-            <td><a href="~/Home/Details/@ViewBag.Data[i].id">@ViewBag.Data[i].name</a></td>
-            <td>
-                @ViewBag.Data[i]["location"]["address1"], @ViewBag.Data[i]["location"]["city"],
-                @ViewBag.Data[i]["location"]["state"], @ViewBag.Data[i]["location"]["zip_code"]
-            </td>
+            <tr>
+                @*<td>@ViewBag.Data[i].id</td>*@
+                <td><img src="@ViewBag.Data[i].image_url" style="height:100px; width:auto;" /></td>
+                @*<td>@Html.ActionLink("ViewBag.Data[i].name", "Details", new { @ViewBag.Data[i].name })</td>*@
+                <td><a href="~/Home/Details/@ViewBag.Data[i].id">@ViewBag.Data[i].name</a></td>
+                <td>
+                    @ViewBag.Data[i]["location"]["address1"], @ViewBag.Data[i]["location"]["city"],
+                    @ViewBag.Data[i]["location"]["state"], @ViewBag.Data[i]["location"]["zip_code"]
+                </td>
 
-            <!--Logic for the wall score goes here-->
-            <td>
                 <!--Logic for the wall score goes here-->
-                @{
-<<<<<<< HEAD
-                    var scoreKey = ViewBag.Data[i].id.Value;
-                }
-                @if (ViewBag.Scores.ContainsKey(scoreKey))
-                {
-                    <text>
-                        @ViewBag.Scores[scoreKey]
-                    </text>
-                }
-=======
-        var scoreKey = ViewBag.Data[i].id.Value;
-                }
-                @if (ViewBag.Scores.ContainsKey(scoreKey))
-    {
-            <text>
-                @ViewBag.Scores[scoreKey]
-            </text>
+                <td>
+                    <!--Logic for the wall score goes here-->
+                    @{
+
+                        var scoreKey = ViewBag.Data[i].id.Value;
+                    }
+                    @if (ViewBag.Scores.ContainsKey(scoreKey))
+                    {
+                        <text>
+                            @ViewBag.Scores[scoreKey]
+                        </text>
+                    }
+
+                </td>
+            </tr>
+        }
+    </table>
+
+
 }
->>>>>>> Created dictionary for holding averages
-            </td>
-        </tr>
-    }
-</table>
 
-<<<<<<< HEAD
 
-=======
-@*if (sum == 0)
-    {
-        ViewBag.Score = "No reviews yet. Be the first!";
-    }
-    else
-    {
-        average = sum / reviews.Count; //calculates average of all the scores
-        ViewBag.Score = average; //so view can access the info
-    }*@
->>>>>>> Created dictionary for holding averages
 
