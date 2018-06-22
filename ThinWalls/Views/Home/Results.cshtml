@@ -1,11 +1,16 @@
 ﻿
 @{
     ViewBag.Title = "Results";
+
+<<<<<<< HEAD
+@ViewBag.Error
+@ViewBag.ErrorDescription
+=======
 }
+>>>>>>> Created dictionary for holding averages
 
 @ViewBag.Error
 @ViewBag.ErrorDescription
-
 <div class="jumbotron">
     <div class="container text-center">
         <form action="~/Home/Search" method="get">
@@ -59,6 +64,7 @@
             <td>
                 <!--Logic for the wall score goes here-->
                 @{
+<<<<<<< HEAD
                     var scoreKey = ViewBag.Data[i].id.Value;
                 }
                 @if (ViewBag.Scores.ContainsKey(scoreKey))
@@ -67,10 +73,32 @@
                         @ViewBag.Scores[scoreKey]
                     </text>
                 }
+=======
+        var scoreKey = ViewBag.Data[i].id.Value;
+                }
+                @if (ViewBag.Scores.ContainsKey(scoreKey))
+    {
+            <text>
+                @ViewBag.Scores[scoreKey]
+            </text>
+}
+>>>>>>> Created dictionary for holding averages
             </td>
         </tr>
     }
 </table>
 
+<<<<<<< HEAD
 
+=======
+@*if (sum == 0)
+    {
+        ViewBag.Score = "No reviews yet. Be the first!";
+    }
+    else
+    {
+        average = sum / reviews.Count; //calculates average of all the scores
+        ViewBag.Score = average; //so view can access the info
+    }*@
+>>>>>>> Created dictionary for holding averages
 

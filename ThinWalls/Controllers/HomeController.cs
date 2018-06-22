@@ -60,6 +60,8 @@ namespace ThinWalls.Controllers
                 Dictionary<string, int> scores = new Dictionary<string, int>();
                 
                 List<Review> reviews = db.Reviews.ToList();
+                List<int> scoreList = new List<int>();
+                
 
                 for (int i = 0; i < reviews.Count; i++)
                 {
@@ -76,15 +78,16 @@ namespace ThinWalls.Controllers
                         }
                     }
                 }
-
                 ViewBag.Scores = scores;
-
-
             }
             catch (Exception e)
             {
                 ViewBag.Error = "JSON Issue";
+<<<<<<< HEAD
                 ViewBag.ErrorDescription = e.Message;
+=======
+                ViewBag.ErrorDescription = e.ToString();
+>>>>>>> Created dictionary for holding averages
                 return View("Results");
             }
 
