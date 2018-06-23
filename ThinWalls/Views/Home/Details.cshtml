@@ -9,16 +9,41 @@
 
 <div class="jumbotron">
     <div class="container text-center">
-        <h4>Quiet Place Rating:</h4>
+        <h4>Quiet Place Meter:</h4>
 
-        @if (ViewBag.Score == 5)
-        {
-            <img src="~/Content/megaphone_basic.png" style="height:100px; width:auto;" />
-        }
+        @{
 
-        else
-        {
-            <h1>@ViewBag.Score</h1>
+            if (ViewBag.Score == 5)
+            {
+                <img src="~/Content/QP1.png" style="height:100px; width:auto;" />
+            }
+            else if (ViewBag.Score == 4)
+            {
+                <img src="~/Content/QP2.png" style="height:100px; width:auto;" />
+            }
+            else if (ViewBag.Score == 3)
+            {
+                <img src="~/Content/QP3.png" style="height:100px; width:auto;" />
+            }
+            else if (ViewBag.Score == 2)
+            {
+                <img src="~/Content/QP4.png" style="height:100px; width:auto;" />
+            }
+            else if (ViewBag.Score == 1)
+            {
+                <img src="~/Content/QP5.png" style="height:100px; width:auto;" />
+            }
+
+            else if (ViewBag.Score == 0)
+            {
+                <div class="container text-center">
+                    <form action="~/Reviews/Create">
+                        <input type="hidden" value="@ViewBag.Data.id" id="id" name="id" />
+                        <input type="hidden" value="@ViewBag.Data.name" id="name" name="name" />
+                        <input type="submit" value="Be the First to Review!" class="btn btn-primary" onclick="return AlreadyReviewed()" />
+                    </form>
+                </div>
+            }
         }
 
         <h1>@ViewBag.Data.name</h1>
@@ -31,45 +56,64 @@
         </h3>
 
         <div>
+            @if (ViewBag.Data.image_url == "")
+            {
+            <img src="~/Content/QPLogoBlack.png" style="height:100px; width:auto;" />
+            }
+            else
+            {
             <img src="@ViewBag.Data.image_url" style="height:300px; width:auto;" /><br />
-
+            }
         </div>
     </div>
 </div>
-@if (ViewBag.Reviews.Count == 0)
-{
-    <div class="container text-center">
-        <form action="~/Reviews/Create">
-            <input type="hidden" value="@ViewBag.Data.id" id="id" name="id" />
-            <input type="hidden" value="@ViewBag.Data.name" id="name" name="name" />
-            <input type="submit" value="Be the First to Review!" class="btn btn-primary" onclick="return AlreadyReviewed()" />
-        </form>
-    </div>
 
-}
-else
+@if (ViewBag.Score != 0)
 {
+
     <table class="table table-bordered">
 
         <tr>
-            <th>Quiet Place Certified Review</th>
-            <th>Quiet Place Comment</th>
-            <th>Quiet Place Score</th>
+            <th style="text-align: center; vertical-align: auto;">Quiet Place Certified Review</th>
+            <th style="text-align: center; vertical-align: auto;">Quiet Place Comment</th>
+            <th style="text-align: center; vertical-align: auto;">Quiet Place Meter</th>
         </tr>
 
         @for (int i = 0; i < ViewBag.Reviews.Count; i++)
         {
             <tr>
-                <td>QP Reviewer @(i + 1)</td>
-                <td>@ViewBag.Reviews[i].Comment</td>
-                <td>
-                    @if (ViewBag.Reviews[i].WallScore == 5)
+                <td style="text-align: center; vertical-align: auto;">QP Reviewer @(i + 1)</td>
+                <td style="text-align: center; vertical-align: auto;">
+                    @if (@ViewBag.Reviews[i].Comment == null)
                     {
-                        <img src="~/Content/megaphone_basic.png" style="height:50px; width:auto;" />
+                        <p1><em>no comment</em></p1>
                     }
                     else
                     {
-                        @ViewBag.Reviews[i].WallScore
+                        @ViewBag.Reviews[i].Comment
+                    }
+                </td>
+                <td style="text-align: center; vertical-align: auto;">
+
+                    @if (ViewBag.Reviews[i].WallScore == 5)
+                    {
+                        <img src="~/Content/QP1.png" style="height:35px; width:auto;" />
+                    }
+                    else if (ViewBag.Reviews[i].WallScore == 4)
+                    {
+                        <img src="~/Content/QP2.png" style="height:35px; width:auto;" />
+                    }
+                    else if (ViewBag.Reviews[i].WallScore == 3)
+                    {
+                        <img src="~/Content/QP3.png" style="height:35px; width:auto;" />
+                    }
+                    else if (ViewBag.Reviews[i].WallScore == 2)
+                    {
+                        <img src="~/Content/QP4.png" style="height:35px; width:auto;" />
+                    }
+                    else if (ViewBag.Reviews[i].WallScore == 1)
+                    {
+                        <img src="~/Content/QP5.png" style="height:35px; width:auto;" />
                     }
                 </td>
             </tr>
@@ -80,45 +124,41 @@ else
         <form action="~/Reviews/Create">
             <input type="hidden" value="@ViewBag.Data.id" id="id" name="id" />
             <input type="hidden" value="@ViewBag.Data.name" id="name" name="name" />
-            <input type="submit" value="Add your Review" class="btn btn-primary" onclick="return AlreadyReviewed()" />
+            <input type="submit" value="Add a Review" class="btn btn-primary" onclick="return AlreadyReviewed()" />
         </form>
     </div>
 }
 
-<h3>Yelpers Are Saying:</h3>
+@foreach (var r in ViewBag.YelpReviews)
+{
 
-<table class="table table-bordered table table-condensed">
-    <tr>
-        <th></th>
-        <th>User</th>
-        <th>Comment</th>
-        <th>Yelp Rating</th>
-    </tr>
-
-    @foreach (var r in ViewBag.YelpReviews)
+    string yelpReview = (string)r.text;
+    string yelpReviewLower = yelpReview.ToLower();
+    if (yelpReviewLower.Contains("noise") || (yelpReviewLower.Contains("sound")) || (yelpReviewLower.Contains("loud")) || (yelpReviewLower.Contains("quiet")) || (yelpReviewLower.Contains("yell")) || (yelpReviewLower.Contains("whisper")) || (yelpReviewLower.Contains("shout")))
     {
 
-        string yelpReview = (string)r.text;
-        string yelpReviewLower = yelpReview.ToLower();
-        <tr>
-            <td><img src="@r.user.image_url" style="height:50px; width:auto;" /></td>
-            <td>@r.user.name</td>
-            <td>
-                @r.text
-            </td>
-            <td>@r.rating</td>
-        </tr>
+        <h3>Yelpers Are Saying:</h3>
 
+        <table class="table table-bordered table table-condensed">
+            <tr>               
+                <th style="text-align: center; vertical-align: auto;">User</th>
+                <th style="text-align: center; vertical-align: auto;">Comment</th>
+                <th style="text-align: center; vertical-align: auto;">Yelp Rating</th>
+            </tr>
+            <tr>
+                <td><span><img src="@r.user.image_url" style="height:50px; width:auto;" />@r.user.name</span></td>               
+                <td>
+                    @r.text
+                </td>
+                <td style="text-align: center; vertical-align: auto;">@r.rating</td>
+            </tr>
+        </table><br />
+        <p>View this business on <a href="@ViewBag.Data.url" target="_blank">Yelp</a></p>
     }
+    <br />
 
 
-    @*@if (yelpReviewLower.Contains("noise") || (yelpReviewLower.Contains("sound")) || (yelpReviewLower.Contains("loud")) || (yelpReviewLower.Contains("quiet")) || (yelpReviewLower.Contains("yell")) || (yelpReviewLower.Contains("whisper")) || (yelpReviewLower.Contains("lobby")))*@
-
-</table>
-     
-<p>View this business on <a href="@ViewBag.Data.url" target="_blank">Yelp</a></p>
-        &nbsp;
-
+}
 <style>
     /* Set the size of the div element that contains the map */
     #map {

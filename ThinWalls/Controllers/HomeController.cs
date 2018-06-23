@@ -14,12 +14,15 @@ namespace ThinWalls.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Index()
+
         {
+
             return View();
         }
 
-        public ActionResult Search(string name = "Grand Circus", string location = "1570+WOODWARD+AVE,+Detroit,+MI,", int zipcode = 48226, string category = "apartments,restaurants,cafes,coffee,desserts,hotelstravel,education,vocational,localflavor,nightlife", int radius = 10000)
+        public ActionResult Search(string name = "", string location = "", int zipcode = 48226, string category = "all", int radius = 10000)
 
         {
 
@@ -59,7 +62,7 @@ namespace ThinWalls.Controllers
 
                 ThinWallsEntities db = new ThinWallsEntities(); //pulls info from db  
                 Dictionary<string, int> scores = new Dictionary<string, int>(); //Dictionary to hold id and average
-                List<Review> reviews = db.Reviews.ToList(); 
+                List<Review> reviews = db.Reviews.ToList();
                 List<int> scoreList = new List<int>();
                 int counter = 1;
 
@@ -71,7 +74,7 @@ namespace ThinWalls.Controllers
                         var id = JsonData["businesses"][j]["id"];
 
                         if (reviews[i].YelpID == (string)id)
-                        {                            
+                        {
                             if (!scores.ContainsKey(reviews[i].YelpID))
                             {
                                 scores.Add(reviews[i].YelpID, reviews[i].WallScore);
@@ -87,7 +90,7 @@ namespace ThinWalls.Controllers
                         //    scores[reviews[i].YelpID] = (scores[reviews[i].YelpID] / counter);
                         //}
                     }
-                    
+
                 }
                 ViewBag.Scores = scores;
 
@@ -212,8 +215,6 @@ namespace ThinWalls.Controllers
                 ViewBag.ErrorDescription = e.Message;
                 return View();
             }
-
-
 
             return View();
         }

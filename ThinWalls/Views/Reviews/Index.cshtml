@@ -14,12 +14,12 @@
             Business Name
         </th>
         <th>
-            Wall Score 
+            Meter
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Comment)
         </th>
-        <th></th>
+        <th>Edit</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -29,11 +29,40 @@
             <!--Logic to display businesses based on this Yelp ID-->
             <a href="~/Home/Details/@Html.DisplayFor(modelItem => item.YelpID)">@Html.DisplayFor(modelItem => item.BusinessName)</a>
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WallScore)
+       
+            <td style="text-align: center; vertical-align: auto;">
+
+                @if (item.WallScore == 5)
+                {
+                    <img src="~/Content/QP1.png" style="height:35px; width:auto;" />
+                }
+                else if (item.WallScore == 4)
+                {
+                    <img src="~/Content/QP2.png" style="height:35px; width:auto;" />
+                }
+                else if (item.WallScore == 3)
+                {
+                    <img src="~/Content/QP3.png" style="height:35px; width:auto;" />
+                }
+                else if (item.WallScore == 2)
+                {
+                    <img src="~/Content/QP4.png" style="height:35px; width:auto;" />
+                }
+                else if (item.WallScore == 1)
+                {
+                    <img src="~/Content/QP5.png" style="height:35px; width:auto;" />
+                }
+          
         </td>
         <td>
+            @if (item.Comment == null)
+            {
+                <p1><em>No Comment</em></p1>
+            }
+            else
+            {
             @Html.DisplayFor(modelItem => item.Comment)
+            }
         </td>
         <td>
             @Html.ActionLink("Update", "Edit", new { id = item.ReviewID }, new { yelpID = item.YelpID }) |
