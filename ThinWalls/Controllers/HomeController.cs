@@ -65,6 +65,7 @@ namespace ThinWalls.Controllers
                 List<Review> reviews = db.Reviews.ToList();
                 List<int> scoreList = new List<int>();
                 int counter = 1;
+                List<Review> count = new List<Review>();
 
 
                 for (int i = 0; i < reviews.Count; i++)
@@ -81,6 +82,9 @@ namespace ThinWalls.Controllers
                             }
                             else
                             {
+                                count = (from s in db.Reviews
+                                         where s.YelpID == ((string)id)
+                                         select s).ToList();
                                 counter++;
                                 scores[reviews[i].YelpID] += reviews[i].WallScore;
                             }

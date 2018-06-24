@@ -1,10 +1,8 @@
-﻿
+﻿@using ThinWalls.Models;
 @{
-    ViewBag.Title = "Results";
-
-
     @ViewBag.Error
     @ViewBag.ErrorDescription
+    ViewBag.Title = "Results";
 
     <div class="jumbotron">
         <div class="container text-center">
@@ -27,10 +25,10 @@
                         <option value="restaurants">Restaurants</option>
                         <option value="cafes">Cafes</option>
 
-                </select>
-            </label>
+                    </select>
+                </label>
                 <label>
-                    <select name="radius" style="width: 110px; background-color: lightgray;">                       
+                    <select name="radius" style="width: 110px; background-color: lightgray;">
                         <option value="500">within a few blocks</option>
                         <option value="8050">within a few miles</option>
                         <option value="32200">within 20 miles</option>
@@ -59,7 +57,7 @@
             {
 
 
-                <tr>                   
+                <tr>
                     <td>
                         @if (ViewBag.Data[i].image_url == "")
                         {
@@ -68,26 +66,34 @@
                         else
                         {
                             <img src="@ViewBag.Data[i].image_url" style="height:100px; width:auto;" /><br />
-                        }                       
-                    </td>                  
+                        }
+                    </td>
                     <td><a href="~/Home/Details/@ViewBag.Data[i].id">@ViewBag.Data[i].name</a></td>
                     <td>
                         @ViewBag.Data[i]["location"]["address1"], @ViewBag.Data[i]["location"]["city"],
                         @ViewBag.Data[i]["location"]["state"], @ViewBag.Data[i]["location"]["zip_code"]
                     </td>
-                  
+
                     <td>
                         <!--Logic for the wall score goes here-->
                         @{
+        ThinWallsEntities db = new ThinWallsEntities(); //pulls info from db
 
-                            var scoreKey = ViewBag.Data[i].id.Value;
+
+        var scoreKey = ViewBag.Data[i].id.Value;
+        string id = ViewBag.Data[i].id.Value;
+
+        List<Review> count = (from s in db.Reviews
+                              where s.YelpID == (id)
+                              select s).ToList();
                         }
                         @if (ViewBag.Scores.ContainsKey(scoreKey))
-                        {
-                            <text>
-                                @ViewBag.Scores[scoreKey]
-                            </text>
-                        }
+    {
+                    <text>
+                        @(ViewBag.Scores[scoreKey] / count.Count)
+                    </text>
+
+}
 
                     </td>
                 </tr>
@@ -95,7 +101,3 @@
         </table>
     }
 }
-
-
-
-
