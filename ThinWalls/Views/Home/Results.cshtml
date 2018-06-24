@@ -68,32 +68,55 @@
                             <img src="@ViewBag.Data[i].image_url" style="height:100px; width:auto;" /><br />
                         }
                     </td>
-                    <td><a href="~/Home/Details/@ViewBag.Data[i].id">@ViewBag.Data[i].name</a></td>
-                    <td>
+                    <td style="text-align: center; vertical-align: auto;"><a href="~/Home/Details/@ViewBag.Data[i].id">@ViewBag.Data[i].name</a></td>
+                    <td style="text-align: center; vertical-align: auto;">
                         @ViewBag.Data[i]["location"]["address1"], @ViewBag.Data[i]["location"]["city"],
                         @ViewBag.Data[i]["location"]["state"], @ViewBag.Data[i]["location"]["zip_code"]
                     </td>
 
-                    <td>
+                    <td style="text-align: center; vertical-align: auto;">
                         <!--Logic for the wall score goes here-->
                         @{
-        ThinWallsEntities db = new ThinWallsEntities(); //pulls info from db
+                            ThinWallsEntities db = new ThinWallsEntities(); //pulls info from db
 
 
-        var scoreKey = ViewBag.Data[i].id.Value;
-        string id = ViewBag.Data[i].id.Value;
+                            var scoreKey = ViewBag.Data[i].id.Value;
+                            string id = ViewBag.Data[i].id.Value;
 
-        List<Review> count = (from s in db.Reviews
-                              where s.YelpID == (id)
-                              select s).ToList();
+                            List<Review> count = (from s in db.Reviews
+                                                  where s.YelpID == (id)
+                                                  select s).ToList();
                         }
                         @if (ViewBag.Scores.ContainsKey(scoreKey))
-    {
-                    <text>
-                        @(ViewBag.Scores[scoreKey] / count.Count)
-                    </text>
+                        {
+                            <text>
+                                @if ((@ViewBag.Scores[scoreKey] / count.Count) == 5)
+                                {
+                                    <img src="~/Content/QP1.png" style="height:100px; width:auto;" />
+                                }
+                                else if ((@ViewBag.Scores[scoreKey] / count.Count) == 4)
+                                {
+                                    <img src="~/Content/QP2.png" style="height:100px; width:auto;" />
+                                }
+                                else if ((@ViewBag.Scores[scoreKey] / count.Count) == 3)
+                                {
+                                    <img src="~/Content/QP3.png" style="height:100px; width:auto;" />
+                                }
+                                else if ((@ViewBag.Scores[scoreKey] / count.Count) == 2)
+                                {
+                                    <img src="~/Content/QP4.png" style="height:100px; width:auto;" />
+                                }
+                                else if ((@ViewBag.Scores[scoreKey] / count.Count) == 1)
+                                {
+                                    <img src="~/Content/QP5.png" style="height:100px; width:auto;" />
+                                }
 
-}
+                            </text>
+                        }
+                        else
+                        {
+                            <p><em>No Rating</em></p>
+                        }
 
                     </td>
                 </tr>
