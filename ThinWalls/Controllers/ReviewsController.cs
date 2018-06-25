@@ -74,7 +74,12 @@ namespace ThinWalls.Controllers
         }
 
         // GET: Reviews/Edit/5
-        public ActionResult Edit(int? id) { 
+        public ActionResult Edit(int? id)
+        {
+            Review rev = (from r in db.Reviews
+                          where r.ReviewID == id
+                          select r).Single();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -85,7 +90,10 @@ namespace ThinWalls.Controllers
                 return HttpNotFound();
             }
 
-           
+            if (rev.UserID != User.Identity.GetUserId())
+            {
+                return HttpNotFound();
+            }
             return View(review);
         }
 
@@ -108,6 +116,10 @@ namespace ThinWalls.Controllers
         // GET: Reviews/Delete/5
         public ActionResult Delete(int? id)
         {
+            Review rev = (from r in db.Reviews
+                          where r.ReviewID == id
+                          select r).Single();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -117,6 +129,12 @@ namespace ThinWalls.Controllers
             {
                 return HttpNotFound();
             }
+
+            if (rev.UserID != User.Identity.GetUserId())
+            {
+                return HttpNotFound();
+            }
+
             return View(review);
         }
 
