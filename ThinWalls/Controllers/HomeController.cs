@@ -22,8 +22,19 @@ namespace ThinWalls.Controllers
             return View();
         }
 
+        //public ActionResult ResultsSorted(string column)
 
-        public ActionResult Search(string name = "", string location = "", int zipcode = 48226, string category = "all", int radius = 10000)
+        //{
+
+        //    ThinWallsEntities db = new ThinWallsEntities();
+        //    ViewBag.Scores = (from r in db.Reviews
+        //                      orderby r.WallScore
+        //                      select r).ToList();
+
+        //    return View("Results");
+        //}
+
+        public ActionResult Search(string name = "", string location = "", int zipcode = 0, string category = "all", int radius = 10000)
         {
 
             HttpWebRequest WR = WebRequest.CreateHttp($"https://api.yelp.com/v3/businesses/search?term={name}&location={location},{zipcode}&categories={category}&radius={radius}&sort_by=distance&limit=50");
