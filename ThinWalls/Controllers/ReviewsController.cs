@@ -126,9 +126,9 @@ namespace ThinWalls.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Review review = db.Reviews.Find(id);
-            db.Reviews.Remove(review);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+                            db.Reviews.Remove(review);
+                            db.SaveChanges();
+                            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

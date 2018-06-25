@@ -22,8 +22,8 @@ namespace ThinWalls.Controllers
             return View();
         }
 
-        public ActionResult Search(string name = "", string location = "", int zipcode = 48226, string category = "all", int radius = 10000)
 
+        public ActionResult Search(string name = "", string location = "", int zipcode = 48226, string category = "all", int radius = 10000)
         {
 
             HttpWebRequest WR = WebRequest.CreateHttp($"https://api.yelp.com/v3/businesses/search?term={name}&location={location},{zipcode}&categories={category}&radius={radius}&sort_by=distance&limit=50");
