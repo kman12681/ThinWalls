@@ -3,7 +3,6 @@
 }
 
 
-@*<img src="~/Content/QPLogo.png" class="glyphicon-align-center" />*@
 
 <div class="jumbotron">
     <div class="container text-center">
@@ -18,22 +17,22 @@
                 <input type="text" name="location" class="form-control" placeholder="City, State" style="width: 150px;" />
             </label> 
             <label>
-                <input type="text" name="zipcode" class="form-control" placeholder="ZipCode" style="width: 150px;" />
+                <input type="text" name="zipcode" value="48226" class="form-control" placeholder="ZipCode" style="width: 150px;" />
             </label> 
 
             <label>
-                <select name="category" style="width: 110px; background-color: lightgray;">
-                    <option disabled selected value="">all</option>
-                    <option value="apartments">Apartments</option>
-                    <option value="hotels">Hotels</option>
-                    <option value="restaurants">Restaurants</option>
-                    <option value="cafes">Cafes</option>
+                <select name="category" style="width: 130px; background-color: lightgray;">
+                    <option disabled selected value="">all</option>                    
+                    <option value="apartments">apartments</option>
+                    <option value="hotels">hotels</option>
+                    <option value="restaurants">restaurants</option>
+                    <option value="cafes">cafes</option>
                 </select>
             </label>
             <label>
-                <select name="radius" style="width: 110px; background-color: lightgray;">                    
-                    <option value="500">within a few blocks</option>
+                <select name="radius" style="width: 200px; background-color: lightgray;">                    
                     <option value="8050">within a few miles</option>
+                    <option value="16094">within 10 miles</option>
                     <option value="32200">within 20 miles</option>
                 </select>
             </label>

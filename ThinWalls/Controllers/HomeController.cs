@@ -21,21 +21,16 @@ namespace ThinWalls.Controllers
 
             return View();
         }
+           
 
-        //public ActionResult ResultsSorted(string column)
 
-        //{
-
-        //    ThinWallsEntities db = new ThinWallsEntities();
-        //    ViewBag.Scores = (from r in db.Reviews
-        //                      orderby r.WallScore
-        //                      select r).ToList();
-
-        //    return View("Results");
-        //}
-
-        public ActionResult Search(string name = "", string location = "", int zipcode = 0, string category = "all", int radius = 10000)
+        public ActionResult Search(string name = "", string location = "", int zipcode = 0, string category = "all", int radius = 8050)
         {
+
+            Session["Location"] = location;
+            Session["Zipcode"] = zipcode;
+            Session["Category"] = category;            
+            Session["Radius"] = radius;
 
             HttpWebRequest WR = WebRequest.CreateHttp($"https://api.yelp.com/v3/businesses/search?term={name}&location={location},{zipcode}&categories={category}&radius={radius}&sort_by=distance&limit=50");
             WR.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0";
@@ -120,7 +115,7 @@ namespace ThinWalls.Controllers
 
                 return View("Results");
             }
-
+          
             return View("Results");
 
         }

@@ -11,28 +11,89 @@
                     <input type="text" name="name" class="form-control" placeholder="Business Name" style="width: 150px;" />
                 </label>
                 <label>
-                    <input type="text" name="location" class="form-control" placeholder="City, State" style="width: 150px;" />
+                    <input type="text" name="location" value="@Session["Location"]" class="form-control" placeholder="City, State" style="width: 150px;" />
                 </label>
                 <label>
-                    <input type="text" name="zipcode" class="form-control" placeholder="ZipCode" style="width: 150px;" />
+                    <input type="text" name="zipcode" value="@Session["Zipcode"]" class="form-control" placeholder="ZipCode" style="width: 150px;" />
                 </label>
 
                 <label>
-                    <select name="category" style="width: 110px; background-color: lightgray;">
-                        <option disabled selected value="">all</option>
-                        <option value="apartments">Apartments</option>
-                        <option value="hotels">Hotels</option>
-                        <option value="restaurants">Restaurants</option>
-                        <option value="cafes">Cafes</option>
+                    <select name="category" style="width: 130px; background-color: lightgray;">
 
+                        @if (Session["Category"] != null)
+                        {
+                            if ((string)Session["Category"] == "all")
+                            {
+                                <option selected value="all">all</option>
+                                <option value="apartments">apartments</option>
+                                <option value="hotels">hotels</option>
+                                <option value="restaurants">restaurants</option>
+                                <option value="cafes">cafes</option>
 
+                            }
+                            else if ((string)Session["Category"] == "apartments")
+                            {
+                                <option value="all">all</option>
+                                <option selected value="apartments">apartments</option>
+                                <option value="hotels">hotels</option>
+                                <option value="restaurants">restaurants</option>
+                                <option value="cafes">cafes</option>
+
+                            }
+                            else if ((string)Session["Category"] == "hotels")
+                            {
+                                <option value="all">all</option>
+                                <option value="apartments">apartments</option>
+                                <option selected value="hotels">hotels</option>
+                                <option value="restaurants">restaurants</option>
+                                <option value="cafes">cafes</option>
+
+                            }
+                            else if ((string)Session["Category"] == "restaurants")
+                            {
+                                <option value="all">all</option>
+                                <option value="apartments">apartments</option>
+                                <option value="hotels">hotels</option>
+                                <option selected value="restaurants">restaurants</option>
+                                <option value="cafes">cafes</option>
+
+                            }
+                            else if ((string)Session["Category"] == "cafes")
+                            {
+                                <option value="all">all</option>
+                                <option value="apartments">apartments</option>
+                                <option value="hotels">hotels</option>
+                                <option value="restaurants">restaurants</option>
+                                <option selected value="cafes">cafes</option>
+                            }                          
+                        }
                     </select>
                 </label>
                 <label>
-                    <select name="radius" style="width: 110px; background-color: lightgray;">
-                        <option value="500">within a few blocks</option>
-                        <option value="8050">within a few miles</option>
-                        <option value="32200">within 20 miles</option>
+                    <select name="radius" style="width: 200px; background-color: lightgray;">
+
+                        @if (Session["Radius"] != null)
+                        {
+                            if ((int)Session["Radius"] == 8050)
+                            {
+                                <option selected value="8050">within a few miles</option>
+                                <option value="16094">within 10 miles</option>
+                                <option value="32200">within 20 miles</option>
+                            }
+                            else if ((int)Session["Radius"] == 16094)
+                            {
+                                <option value="8050">within a few miles</option>
+                                <option selected value="16094">within 10 miles</option>
+                                <option value="32200">within 20 miles</option>
+                            }
+                            else if ((int)Session["Radius"] == 32200)
+                            {
+                                <option value="8050">within a few miles</option>
+                                <option value="16094">within 10 miles</option>
+                                <option selected value="32200">within 20 miles</option>
+                            }
+                        }
+                    
                     </select>
                 </label>
 
@@ -52,8 +113,6 @@
     }
     else
     {
-
-
 
         <table class="table table-bordered table table-striped">
 
