@@ -76,6 +76,18 @@ namespace ThinWalls.Controllers
         // GET: Reviews/Edit/5
         public ActionResult Edit(int? id)
         {
+            //string un = User.Identity.GetUserId();
+            //List<Review> revList = (from l in db.Reviews
+            //                        where l.UserID == un
+            //                        select l).ToList();
+            //for (int i = 0; i < revList.Count; i++)
+            //{
+            //    if (id != revList[i].ReviewID)
+            //    {
+            //        return HttpNotFound();
+            //    }
+            //}
+            
             Review rev = (from r in db.Reviews
                           where r.ReviewID == id
                           select r).Single();
@@ -89,11 +101,12 @@ namespace ThinWalls.Controllers
             {
                 return HttpNotFound();
             }
-
+            
             if (rev.UserID != User.Identity.GetUserId())
             {
                 return HttpNotFound();
             }
+
             return View(review);
         }
 
