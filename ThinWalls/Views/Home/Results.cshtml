@@ -113,15 +113,14 @@
     }
     else
     {
-
-        <table class="table table-bordered table table-striped">
-
+        <table class="table table-bordered table table-striped" id="resultsTable">
 
             <tr>
                 <th></th>
                 <th>BusinessName</th>
                 <th>Address</th>
-                <th>@*<a href="~/Home/ResultsSorted?column=Rating">QPR</a>*@</th>
+                <th><a href="#" onClick="sortTable()"><img src="down.png" /></a>
+                <a href="#" onClick="sortTable2()"><img src="up.png" /></a></th>
 
             </tr>
 
@@ -129,7 +128,6 @@
             @for (int i = 0; i < ViewBag.Data.Count; i++)
 
             {
-
                 <tr>
                     <td>
                         @if (ViewBag.Data[i].image_url == "")
@@ -190,12 +188,80 @@
                             <p><em>No Rating</em></p>
                         }
 
-                    </td>
+                    </td>                    
                 </tr>
             }
+            
         </table>
-
-    }
+       }
 }
+
+<script>
+    function sortTable() {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("resultsTable");
+        switching = true;
+        /* Make a loop that will continue until
+        no switching has been done: */
+        while (switching) {
+            // Start by saying: no switching is done:
+            switching = false;
+            rows = table.getElementsByTagName("TR");
+            /* Loop through all table rows (except the
+            first, which contains table headers): */
+            for (i = 1; i < (rows.length - 1); i++) {
+                // Start by saying there should be no switching:
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[3];
+                y = rows[i + 1].getElementsByTagName("TD")[3];
+                // Check if the two rows should switch place:
+                if (x.innerHTML > y.innerHTML) {
+                    // If so, mark as a switch and break the loop:
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+            if (shouldSwitch) {
+                /* If a switch has been marked, make the switch
+                and mark that a switch has been done: */
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    }
+
+    function sortTable2() {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("resultsTable");
+        switching = true;
+        /* Make a loop that will continue until
+        no switching has been done: */
+        while (switching) {
+            // Start by saying: no switching is done:
+            switching = false;
+            rows = table.getElementsByTagName("TR");
+            /* Loop through all table rows (except the
+            first, which contains table headers): */
+            for (i = 1; i < (rows.length - 1); i++) {
+                // Start by saying there should be no switching:
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[3];
+                y = rows[i + 1].getElementsByTagName("TD")[3];
+                // Check if the two rows should switch place:
+                if (x.innerHTML < y.innerHTML) {
+                    // If so, mark as a switch and break the loop:
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+            if (shouldSwitch) {
+                /* If a switch has been marked, make the switch
+                and mark that a switch has been done: */
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    }
+</script>
 
 

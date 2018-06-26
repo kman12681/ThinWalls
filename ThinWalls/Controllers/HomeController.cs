@@ -18,13 +18,11 @@ namespace ThinWalls.Controllers
         public ActionResult Index()
 
         {
-
             return View();
-        }
-           
+        }      
 
+        public ActionResult Search(string name = "", string location = "", int zipcode = 0, string category = "all", int radius = 10000)
 
-        public ActionResult Search(string name = "", string location = "", int zipcode = 0, string category = "all", int radius = 8050)
         {
 
             Session["Location"] = location;
