@@ -244,6 +244,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\clouds-foggy-hazy-441595.jpg" />
+    <Content Include="Content\down.png" />
     <Content Include="Content\megaphone_basic.png" />
     <Content Include="Content\QP1.png" />
     <Content Include="Content\QP2.png" />
@@ -253,6 +254,7 @@
     <Content Include="Content\QPLogoBlack.png" />
     <Content Include="Content\QPLogoWhite.png" />
     <Content Include="Content\QPLogoWhite2.png" />
+    <Content Include="Content\up.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -273,7 +275,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include=".gitignore" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <EntityDeploy Include="Models\ThinWalls.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ThinWalls.Designer.cs</LastGenOutput>

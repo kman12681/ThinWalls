@@ -2,6 +2,7 @@
 @{
     @ViewBag.Error
     @ViewBag.ErrorDescription
+    @ViewBag.Message
     ViewBag.Title = "Results";
 
     <div class="jumbotron">
@@ -102,9 +103,6 @@
         </div>
     </div>
 
-
-
-
     if (ViewBag.Data.Count == 0)
     {
         <div class="container text-center">
@@ -116,13 +114,14 @@
         <table class="table table-bordered table table-striped" id="resultsTable">
 
             <tr>
-                <th></th>
-                <th>BusinessName</th>
-                <th>Address</th>
-                <th><a href="#" onClick="sortTable()"><img src="down.png" /></a>
-                <a href="#" onClick="sortTable2()"><img src="up.png" /></a></th>
+                <th style="text-align: center; vertical-align: auto; background-color:lightgray;">Image</th>
+                <th style="text-align: center; vertical-align: auto; background-color:lightgray;">Business</th>
+                <th style="text-align: center; vertical-align: auto; background-color:lightgray;">Address</th>
+                <th style="text-align: center; vertical-align: auto; background-color:lightgray;">
+                    <a href="#" onClick="sortTable()"><img src="~/Content/down.png" style="height: 20px; width: auto" /></a>
+                    <a href="#" onClick="sortTable2()"><img src="~/Content/up.png" style="height: 20px; width: auto" /></a></th>
 
-            </tr>
+</tr>
 
 
             @for (int i = 0; i < ViewBag.Data.Count; i++)
@@ -187,8 +186,7 @@
                         {
                             <p><em>No Rating</em></p>
                         }
-
-                    </td>                    
+                                           
                 </tr>
             }
             

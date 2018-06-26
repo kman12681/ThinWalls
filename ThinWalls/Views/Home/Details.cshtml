@@ -5,7 +5,9 @@
     ViewBag.Title = "Details";
 }
 
-<a href="javascript:history.back()">Back</a>
+&nbsp;
+<a href="javascript:history.back()">Back to Results</a>
+&nbsp;
 
 <div class="jumbotron">
     <div class="container text-center">
@@ -58,11 +60,11 @@
         <div>
             @if (ViewBag.Data.image_url == "")
             {
-            <img src="~/Content/QPLogoBlack.png" style="height:100px; width:auto;" />
+                <img src="~/Content/QPLogoBlack.png" style="height:100px; width:auto;" />
             }
             else
             {
-            <img src="@ViewBag.Data.image_url" style="height:300px; width:auto;" /><br />
+                <img src="@ViewBag.Data.image_url" style="height:300px; width:auto;" /><br />
             }
         </div>
     </div>
@@ -140,13 +142,13 @@
         <h3>Yelpers Are Saying:</h3>
 
         <table class="table table-bordered table table-condensed">
-            <tr>               
+            <tr>
                 <th style="text-align: center; vertical-align: auto;">User</th>
                 <th style="text-align: center; vertical-align: auto;">Comment</th>
                 <th style="text-align: center; vertical-align: auto;">Yelp Rating</th>
             </tr>
             <tr>
-                <td><span><img src="@r.user.image_url" style="height:50px; width:auto;" />@r.user.name</span></td>               
+                <td><span><img src="@r.user.image_url" style="height:50px; width:auto;" />@r.user.name</span></td>
                 <td>
                     @r.text
                 </td>

@@ -19,15 +19,15 @@ namespace ThinWalls.Controllers
 
         {
             return View();
-        }      
+        }
 
-        public ActionResult Search(string name = "", string location = "", int zipcode = 0, string category = "all", int radius = 10000)
+        public ActionResult Search(string name = "", string location = "", int zipcode = 00000, string category = "all", int radius = 10000)
 
         {
 
             Session["Location"] = location;
             Session["Zipcode"] = zipcode;
-            Session["Category"] = category;            
+            Session["Category"] = category;
             Session["Radius"] = radius;
 
             HttpWebRequest WR = WebRequest.CreateHttp($"https://api.yelp.com/v3/businesses/search?term={name}&location={location},{zipcode}&categories={category}&radius={radius}&sort_by=distance&limit=50");
@@ -39,19 +39,20 @@ namespace ThinWalls.Controllers
             try
             {
                 Response = (HttpWebResponse)WR.GetResponse();
+                
             }
             catch (WebException e)
-            {
-                ViewBag.Error = "Exception";
+            {                
+                ViewBag.Error = "Bad API Response";
                 ViewBag.ErrorDescription = e.Message;
-                return View("Results");
+                return View("Error");
             }
 
             if (Response.StatusCode != HttpStatusCode.OK)
             {
                 ViewBag.Error = Response.StatusCode;
                 ViewBag.ErrorDescription = Response.StatusDescription;
-                return View("Results");
+                return View("Error");
             }
 
             StreamReader reader = new StreamReader(Response.GetResponseStream());
@@ -100,7 +101,9 @@ namespace ThinWalls.Controllers
                     }
 
                 }
+
                 ViewBag.Scores = scores;
+
 
             }
             catch (Exception e)
@@ -111,9 +114,9 @@ namespace ThinWalls.Controllers
                 ViewBag.ErrorDescription = e.Message;
 
 
-                return View("Results");
+                return View("Error");
             }
-          
+
             return View("Results");
 
         }
@@ -133,16 +136,16 @@ namespace ThinWalls.Controllers
             }
             catch (WebException e)
             {
-                ViewBag.Error = "Exception";
+                ViewBag.Error = "Bad API Response";
                 ViewBag.ErrorDescription = e.Message;
-                return View();
+                return View("Error");
             }
 
             if (Response.StatusCode != HttpStatusCode.OK)
             {
                 ViewBag.Error = Response.StatusCode;
                 ViewBag.ErrorDescription = Response.StatusDescription;
-                return View();
+                return View("Error");
             }
 
             StreamReader reader = new StreamReader(Response.GetResponseStream());
@@ -158,7 +161,7 @@ namespace ThinWalls.Controllers
             {
                 ViewBag.Error = "JSON Issue";
                 ViewBag.ErrorDescription = e.Message;
-                return View();
+                return View("Error");
             }
 
             //Calculate Wall Score Logic
@@ -196,16 +199,16 @@ namespace ThinWalls.Controllers
             }
             catch (WebException e)
             {
-                ViewBag.Error = "Exception";
+                ViewBag.Error = "Bad API Response";
                 ViewBag.ErrorDescription = e.Message;
-                return View();
+                return View("Error");
             }
 
             if (Response.StatusCode != HttpStatusCode.OK)
             {
                 ViewBag.Error = Response2.StatusCode;
                 ViewBag.ErrorDescription = Response2.StatusDescription;
-                return View();
+                return View("Error");
             }
 
             StreamReader reader2 = new StreamReader(Response2.GetResponseStream());
@@ -221,7 +224,7 @@ namespace ThinWalls.Controllers
             {
                 ViewBag.Error = "JSON Issue";
                 ViewBag.ErrorDescription = e.Message;
-                return View();
+                return View("Error");
             }
 
             return View();

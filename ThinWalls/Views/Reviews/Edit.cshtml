@@ -25,9 +25,9 @@
         <!--User name is hidden here, to not allow user to edit it-->
         <input type="hidden" value="@User.Identity.GetUserId()" name="UserID" />
 
-        
-        <input type="hidden" value="@Model.YelpID" name="YelpID" />     
-        
+
+        <input type="hidden" value="@Model.YelpID" name="YelpID" />
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.WallScore, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -63,10 +63,40 @@
     </div>
 
     <div>
-        @Html.ActionLink("Back to Your Reviews", "Index")
+        @Html.ActionLink("Back to My Reviews", "Index")
     </div>
 
 }
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+<div class="form-group">
+    <table class="table table-bordered">
+        <tr>
+            <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="20%"><img src="~/Content/QP1.png" style="height:50px; width:auto;" /></th>
+            <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="20%"><img src="~/Content/QP2.png" style="height:50px; width:auto;" /></th>
+            <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="20%"><img src="~/Content/QP3.png" style="height:50px; width:auto;" /></th>
+            <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="20%"><img src="~/Content/QP4.png" style="height:50px; width:auto;" /></th>
+            <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="20%"><img src="~/Content/QP5.png" style="height:50px; width:auto;" /></th>
+        </tr>
+
+        <tr>
+            <td style="text-align: center; vertical-align: auto; background-color:lightgray;">extremely quiet</td>
+            <td style="text-align: center; vertical-align: auto; background-color:lightgray;">pretty quiet</td>
+            <td style="text-align: center; vertical-align: auto; background-color:lightgray;">average</td>
+            <td style="text-align: center; vertical-align: auto; background-color:lightgray;">loud</td>
+            <td style="text-align: center; vertical-align: auto; background-color:lightgray;">extremely loud</td>
+        </tr>
+    </table>
+</div>
+
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

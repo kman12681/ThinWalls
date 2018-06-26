@@ -3,7 +3,106 @@
 @{
     ViewBag.Title = "Error";
 }
+<div class="jumbotron">
+    <div class="container text-center">
+        <form action="~/Home/Search" group="form-group" method="get">
+            <label>
+                <input type="text" name="name" class="form-control" placeholder="Business Name" style="width: 150px;" />
+            </label>
+            <label>
+                <input type="text" name="location" value="@Session["Location"]" class="form-control" placeholder="City, State" style="width: 150px;" />
+            </label>
+            <label>
+                <input type="text" name="zipcode" value="@Session["Zipcode"]" class="form-control" placeholder="ZipCode" style="width: 150px;" />
+            </label>
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+            <label>
+                <select name="category" style="width: 130px; background-color: lightgray;">
+
+                    @if (Session["Category"] != null)
+                    {
+                        if ((string)Session["Category"] == "all")
+                        {
+                            <option selected value="all">all</option>
+                            <option value="apartments">apartments</option>
+                            <option value="hotels">hotels</option>
+                            <option value="restaurants">restaurants</option>
+                            <option value="cafes">cafes</option>
+
+                        }
+                        else if ((string)Session["Category"] == "apartments")
+                        {
+                            <option value="all">all</option>
+                            <option selected value="apartments">apartments</option>
+                            <option value="hotels">hotels</option>
+                            <option value="restaurants">restaurants</option>
+                            <option value="cafes">cafes</option>
+
+                        }
+                        else if ((string)Session["Category"] == "hotels")
+                        {
+                            <option value="all">all</option>
+                            <option value="apartments">apartments</option>
+                            <option selected value="hotels">hotels</option>
+                            <option value="restaurants">restaurants</option>
+                            <option value="cafes">cafes</option>
+
+                        }
+                        else if ((string)Session["Category"] == "restaurants")
+                        {
+                            <option value="all">all</option>
+                            <option value="apartments">apartments</option>
+                            <option value="hotels">hotels</option>
+                            <option selected value="restaurants">restaurants</option>
+                            <option value="cafes">cafes</option>
+
+                        }
+                        else if ((string)Session["Category"] == "cafes")
+                        {
+                            <option value="all">all</option>
+                            <option value="apartments">apartments</option>
+                            <option value="hotels">hotels</option>
+                            <option value="restaurants">restaurants</option>
+                            <option selected value="cafes">cafes</option>
+                        }
+                    }
+                </select>
+            </label>
+            <label>
+                <select name="radius" style="width: 200px; background-color: lightgray;">
+
+                    @if (Session["Radius"] != null)
+                    {
+                        if ((int)Session["Radius"] == 8050)
+                        {
+                            <option selected value="8050">within a few miles</option>
+                            <option value="16094">within 10 miles</option>
+                            <option value="32200">within 20 miles</option>
+                        }
+                        else if ((int)Session["Radius"] == 16094)
+                        {
+                            <option value="8050">within a few miles</option>
+                            <option selected value="16094">within 10 miles</option>
+                            <option value="32200">within 20 miles</option>
+                        }
+                        else if ((int)Session["Radius"] == 32200)
+                        {
+                            <option value="8050">within a few miles</option>
+                            <option value="16094">within 10 miles</option>
+                            <option selected value="32200">within 20 miles</option>
+                        }
+                    }
+
+                </select>
+            </label>
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </form>
+    </div>
+</div>
+
+
+
+<h1>@ViewBag.Error</h1>
+<h3 class="text-danger">Error.</h3>
+<h4 class="text-danger">An error occurred while processing your request.</h4>
 

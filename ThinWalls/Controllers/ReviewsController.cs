@@ -54,7 +54,7 @@ namespace ThinWalls.Controllers
             ViewBag.Name = name;
             return View();
         }
-          
+
 
         // POST: Reviews/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -75,6 +75,7 @@ namespace ThinWalls.Controllers
 
         // GET: Reviews/Edit/5
         public ActionResult Edit(int? id)
+
         {
             //string un = User.Identity.GetUserId();
             //List<Review> revList = (from l in db.Reviews
@@ -86,12 +87,14 @@ namespace ThinWalls.Controllers
             //    {
             //        return HttpNotFound();
             //    }
-            //}
-            
+            //}           
+
+                      
+
             Review rev = (from r in db.Reviews
                           where r.ReviewID == id
                           select r).Single();
-
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -108,6 +111,7 @@ namespace ThinWalls.Controllers
             }
 
             return View(review);
+
         }
 
         // POST: Reviews/Edit/5
@@ -157,9 +161,9 @@ namespace ThinWalls.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Review review = db.Reviews.Find(id);
-                            db.Reviews.Remove(review);
-                            db.SaveChanges();
-                            return RedirectToAction("Index");
+            db.Reviews.Remove(review);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
