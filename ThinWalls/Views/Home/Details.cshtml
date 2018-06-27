@@ -64,7 +64,7 @@
             }
             else
             {
-                <img src="@ViewBag.Data.image_url" style="height:300px; width:auto;" /><br />
+                <img src="@ViewBag.Data.image_url" style="height:300px; width:300px; border-radius: 100%; border: 1px solid black;" /><br />
             }
         </div>
     </div>
@@ -73,13 +73,15 @@
     @if (ViewBag.Score != 0)
     {
 
+
         <table class="table table-bordered">
 
             <tr>
-                <th style="text-align: center; vertical-align: auto;">Quiet Place Certified Review</th>
-                <th style="text-align: center; vertical-align: auto;">Quiet Place Comment</th>
-                <th style="text-align: center; vertical-align: auto;">Quiet Place Meter</th>
+                <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="33%">Quiet Place Certified Review</th>
+                <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="34%">Quiet Place Comment</th>
+                <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="33%">Quiet Place Meter</th>
             </tr>
+
 
             @for (int i = 0; i < ViewBag.Reviews.Count; i++)
             {
@@ -143,9 +145,9 @@
 
             <table class="table table-bordered table table-condensed">
                 <tr>
-                    <th style="text-align: center; vertical-align: auto;">User</th>
-                    <th style="text-align: center; vertical-align: auto;">Comment</th>
-                    <th style="text-align: center; vertical-align: auto;">Yelp Rating</th>
+                    <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="15%">User</th>
+                    <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="70%">Comment</th>
+                    <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="15%">Yelp Rating</th>
                 </tr>
                 <tr>
                     <td><span><img src="@r.user.image_url" style="height:50px; width:auto;" />@r.user.name</span></td>
@@ -158,10 +160,14 @@
             <p>View this business on <a href="@ViewBag.Data.url" target="_blank">Yelp</a></p>
         }
         <br />
-
-
     }
+
+    <p>View this business on <a href="@ViewBag.Data.url" target="_blank">Yelp</a></p>
+
 </div>
+
+
+
 <style>
     /* Set the size of the div element that contains the map */
     #map {

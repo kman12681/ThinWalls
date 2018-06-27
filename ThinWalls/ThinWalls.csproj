@@ -221,6 +221,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Review.cs">
       <DependentUpon>ThinWalls.tt</DependentUpon>
+      <BrowseToURL>kk</BrowseToURL>
     </Compile>
     <Compile Include="Models\ThinWalls.Context.cs">
       <AutoGen>True</AutoGen>

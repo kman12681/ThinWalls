@@ -21,7 +21,7 @@ namespace ThinWalls.Controllers
             return View();
         }
 
-        public ActionResult Search(string name = "", string location = "", int zipcode = 00000, string category = "all", int radius = 10000)
+        public ActionResult Search(string name = "", string location = "", int zipcode = 0, string category = "all", int radius = 10000)
 
         {
 
@@ -69,7 +69,7 @@ namespace ThinWalls.Controllers
                 Dictionary<string, int> scores = new Dictionary<string, int>(); //Dictionary to hold id and average
                 List<Review> reviews = db.Reviews.ToList();
                 List<int> scoreList = new List<int>();
-                int counter = 1;
+                
                 List<Review> count = new List<Review>();
 
 
@@ -90,14 +90,12 @@ namespace ThinWalls.Controllers
                                 count = (from s in db.Reviews
                                          where s.YelpID == ((string)id)
                                          select s).ToList();
-                                counter++;
+                               
                                 scores[reviews[i].YelpID] += reviews[i].WallScore;
+                                //if key already exists, just add the wallscore to whatever the value is for that pair
                             }
                         }
-                        //if (counter > 1)
-                        //{
-                        //    scores[reviews[i].YelpID] = (scores[reviews[i].YelpID] / counter);
-                        //}
+                     
                     }
 
                 }
@@ -120,7 +118,6 @@ namespace ThinWalls.Controllers
             return View("Results");
 
         }
-
 
         public ActionResult Details(string id)
         {

@@ -17,7 +17,14 @@
                     <input type="text" name="location" value="@Session["Location"]" class="form-control" placeholder="City, State" style="width: 150px;" />
                 </label>
                 <label>
-                    <input type="text" name="zipcode" value="@Session["Zipcode"]" class="form-control" placeholder="ZipCode" style="width: 150px;" />
+                    @if ((int)Session["Zipcode"] == 0)
+                    {
+                        <input type="text" name="zipcode" class="form-control" placeholder="ZipCode" style="width: 150px;" />
+                    }
+                    else
+                    {
+                        <input type="text" name="zipcode" value="@Session["Zipcode"]" class="form-control" placeholder="ZipCode" style="width: 150px;" />
+                    }
                 </label>
 
                 <label>
@@ -113,23 +120,45 @@
         }
         else
         {
-            <table class="table table-bordered" id="resultsTable">
+            <div class="form-group">
+                <table class="table table-bordered">
+                    <tr>
+                        <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="20%"><img src="~/Content/QP1.png" style="height:25px; width:auto;" /></th>
+                        <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="20%"><img src="~/Content/QP2.png" style="height:25px; width:auto;" /></th>
+                        <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="20%"><img src="~/Content/QP3.png" style="height:25px; width:auto;" /></th>
+                        <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="20%"><img src="~/Content/QP4.png" style="height:25px; width:auto;" /></th>
+                        <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="20%"><img src="~/Content/QP5.png" style="height:25px; width:auto;" /></th>
+                    </tr>
 
+                    <tr>
+                        <td style="text-align: center; vertical-align: auto; background-color:lightgray;">extremely quiet</td>
+                        <td style="text-align: center; vertical-align: auto; background-color:lightgray;">pretty quiet</td>
+                        <td style="text-align: center; vertical-align: auto; background-color:lightgray;">average</td>
+                        <td style="text-align: center; vertical-align: auto; background-color:lightgray;">loud</td>
+                        <td style="text-align: center; vertical-align: auto; background-color:lightgray;">extremely loud</td>
+                    </tr>
+                </table>
+            </div>
+
+            <table class="table" id="resultsTable">
                 <tr>
-                    <th style="text-align: center; vertical-align: auto; background-color:lightgray;">Image</th>
-                    <th style="text-align: center; vertical-align: auto; background-color:lightgray;">Business</th>
-                    <th style="text-align: center; vertical-align: auto; background-color:lightgray;">Address</th>
-                    <th style="text-align: center; vertical-align: auto; background-color:lightgray;">
+                    <th style="text-align: center; vertical-align: auto;">@*Image*@</th>
+                    <th style="text-align: center; vertical-align: auto; ">@*Business*@</th>
+                    <th style="text-align: center; vertical-align: auto;">@*Address*@</th>
+                    <th style="text-align: center; vertical-align: auto;">
                         <a href="#" onClick="sortTable()"><img src="~/Content/down.png" style="height: 20px; width: auto" /></a>
                         <a href="#" onClick="sortTable2()"><img src="~/Content/up.png" style="height: 20px; width: auto" /></a>
                     </th>
-
                 </tr>
+
+
+
 
 
                 @for (int i = 0; i < ViewBag.Data.Count; i++)
 
                 {
+
                     <tr>
                         <td>
                             @if (ViewBag.Data[i].image_url == "")
@@ -138,7 +167,7 @@
                             }
                             else
                             {
-                                <img src="@ViewBag.Data[i].image_url" style="height:100px; width:auto;" /><br />
+                                <img src="@ViewBag.Data[i].image_url" style="height:100px; width:100px; border-radius:100%; border: 1px solid black;" /><br />
                             }
                         </td>
                         <td style="text-align: center; vertical-align: auto;"><a href="~/Home/Details/@ViewBag.Data[i].id">@ViewBag.Data[i].name</a></td>
@@ -192,14 +221,14 @@
 
                     </tr>
                 }
-
-
-
-
             </table>
         }
+
     </div>
+
 }
+       
+
 
 
 
