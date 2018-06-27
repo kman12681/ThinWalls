@@ -6,11 +6,11 @@
 }
 <link rel="stylesheet" href="~/Content/styles.css">
 &nbsp;
-<a href="javascript:history.back()">Back</a>
+
 &nbsp;
 
 <div class="form-group">
-    <table class="table table-no-border">
+    <table class="table">
         <tr>
             <th style="text-align: center; vertical-align: auto; " width="20%"><img src="~/Content/QP1.png" style="height:25px; width:auto;" /></th>
             <th style="text-align: center; vertical-align: auto; " width="20%"><img src="~/Content/QP2.png" style="height:25px; width:auto;" /></th>
@@ -87,7 +87,7 @@
                 <img src="@ViewBag.Data.image_url" style="height:300px; width:300px; border-radius: 100%; border: 1px solid black;" /><br />
             }
         </div>
-    </div>
+    </div><br/>
 
 
     @if (ViewBag.Score != 0)
@@ -165,9 +165,9 @@
 
             <table class="table table-bordered table table-condensed">
                 <tr>
-                    <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="15%">User</th>
-                    <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="70%">Comment</th>
-                    <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="15%">Yelp Rating</th>
+                    <th style="text-align: center; vertical-align: auto; background-color:lightcoral;" width="15%">User</th>
+                    <th style="text-align: center; vertical-align: auto; background-color:lightcoral;" width="70%">Comment</th>
+                    <th style="text-align: center; vertical-align: auto; background-color:lightcoral;" width="15%">Yelp Rating</th>
                 </tr>
                 <tr>
                     <td><span><img src="@r.user.image_url" style="height:50px; width:auto;" />@r.user.name</span></td>
@@ -176,13 +176,12 @@
                     </td>
                     <td style="text-align: center; vertical-align: auto;">@r.rating</td>
                 </tr>
-            </table><br />
-            <p>View this business on <a href="@ViewBag.Data.url" target="_blank">Yelp</a></p>
+            </table><br />            
         }
-        
-    }
 
-    <p>View this business on <a href="@ViewBag.Data.url" target="_blank">Yelp</a></p>
+    }
+    <p>View this business on <a href="@ViewBag.Data.url" target="_blank">Yelp</a></p>   
+    <a href="javascript:history.back()">Back</a>
 
 </div>
 
