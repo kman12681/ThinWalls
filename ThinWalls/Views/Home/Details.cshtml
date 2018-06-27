@@ -6,8 +6,28 @@
 }
 <link rel="stylesheet" href="~/Content/styles.css">
 &nbsp;
-<a href="javascript:history.back()">Back to Results</a>
+<a href="javascript:history.back()">Back</a>
 &nbsp;
+
+<div class="form-group">
+    <table class="table table-no-border">
+        <tr>
+            <th style="text-align: center; vertical-align: auto; " width="20%"><img src="~/Content/QP1.png" style="height:25px; width:auto;" /></th>
+            <th style="text-align: center; vertical-align: auto; " width="20%"><img src="~/Content/QP2.png" style="height:25px; width:auto;" /></th>
+            <th style="text-align: center; vertical-align: auto; " width="20%"><img src="~/Content/QP3.png" style="height:25px; width:auto;" /></th>
+            <th style="text-align: center; vertical-align: auto; " width="20%"><img src="~/Content/QP4.png" style="height:25px; width:auto;" /></th>
+            <th style="text-align: center; vertical-align: auto; " width="20%"><img src="~/Content/QP5.png" style="height:25px; width:auto;" /></th>
+        </tr>
+
+        <tr>
+            <td style="text-align: center; vertical-align: auto; ">extremely quiet</td>
+            <td style="text-align: center; vertical-align: auto; ">pretty quiet</td>
+            <td style="text-align: center; vertical-align: auto; ">average</td>
+            <td style="text-align: center; vertical-align: auto; ">loud</td>
+            <td style="text-align: center; vertical-align: auto; ">extremely loud</td>
+        </tr>
+    </table>
+</div>
 
 <div class="jumbotron">
     <div class="container text-center">
@@ -159,7 +179,7 @@
             </table><br />
             <p>View this business on <a href="@ViewBag.Data.url" target="_blank">Yelp</a></p>
         }
-        <br />
+        
     }
 
     <p>View this business on <a href="@ViewBag.Data.url" target="_blank">Yelp</a></p>

@@ -245,6 +245,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\clouds-foggy-hazy-441595.jpg" />
+    <Content Include="Content\clouds.jpg" />
     <Content Include="Content\down.png" />
     <Content Include="Content\megaphone_basic.png" />
     <Content Include="Content\QP1.png" />
@@ -287,6 +288,7 @@
     <Content Include="Models\ThinWalls.edmx.diagram">
       <DependentUpon>ThinWalls.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\QuietPlace - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

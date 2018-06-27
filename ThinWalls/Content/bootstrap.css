@@ -295,6 +295,7 @@ table {
   .table-bordered td {
     border: 1px solid #ddd !important;
   }
+    
 }
 
 *,
@@ -6814,3 +6815,4 @@ td.visible-print {
     display: none !important;
   }
 }
+

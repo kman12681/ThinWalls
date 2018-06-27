@@ -4,234 +4,210 @@
     @ViewBag.ErrorDescription
     @ViewBag.Message
     ViewBag.Title = "Results";
+}
 
-    <link rel="stylesheet" href="~/Content/styles.css">
+<link rel="stylesheet" href="~/Content/styles.css">
 
-    <div class="jumbotron">
-        <div class="container text-center">
-            <form action="~/Home/Search" group="form-group" method="get">
-                <label>
-                    <input type="text" name="name" class="form-control" placeholder="Business Name" style="width: 150px;" />
-                </label>
-                <label>
-                    <input type="text" name="location" value="@Session["Location"]" class="form-control" placeholder="City, State" style="width: 150px;" />
-                </label>
-                <label>
-                    @if ((int)Session["Zipcode"] == 0)
-                    {
-                        <input type="text" name="zipcode" class="form-control" placeholder="ZipCode" style="width: 150px;" />
-                    }
-                    else
-                    {
-                        <input type="text" name="zipcode" value="@Session["Zipcode"]" class="form-control" placeholder="ZipCode" style="width: 150px;" />
-                    }
-                </label>
-
-                <label>
-                    <select name="category" style="width: 130px; background-color: lightgray;">
-
-                        @if (Session["Category"] != null)
-                        {
-                            if ((string)Session["Category"] == "all")
-                            {
-                                <option selected value="all">all</option>
-                                <option value="apartments">apartments</option>
-                                <option value="hotels">hotels</option>
-                                <option value="restaurants">restaurants</option>
-                                <option value="cafes">cafes</option>
-
-                            }
-                            else if ((string)Session["Category"] == "apartments")
-                            {
-                                <option value="all">all</option>
-                                <option selected value="apartments">apartments</option>
-                                <option value="hotels">hotels</option>
-                                <option value="restaurants">restaurants</option>
-                                <option value="cafes">cafes</option>
-
-                            }
-                            else if ((string)Session["Category"] == "hotels")
-                            {
-                                <option value="all">all</option>
-                                <option value="apartments">apartments</option>
-                                <option selected value="hotels">hotels</option>
-                                <option value="restaurants">restaurants</option>
-                                <option value="cafes">cafes</option>
-
-                            }
-                            else if ((string)Session["Category"] == "restaurants")
-                            {
-                                <option value="all">all</option>
-                                <option value="apartments">apartments</option>
-                                <option value="hotels">hotels</option>
-                                <option selected value="restaurants">restaurants</option>
-                                <option value="cafes">cafes</option>
-
-                            }
-                            else if ((string)Session["Category"] == "cafes")
-                            {
-                                <option value="all">all</option>
-                                <option value="apartments">apartments</option>
-                                <option value="hotels">hotels</option>
-                                <option value="restaurants">restaurants</option>
-                                <option selected value="cafes">cafes</option>
-                            }
-                        }
-                    </select>
-                </label>
-                <label>
-                    <select name="radius" style="width: 200px; background-color: lightgray;">
-
-                        @if (Session["Radius"] != null)
-                        {
-                            if ((int)Session["Radius"] == 8050)
-                            {
-                                <option selected value="8050">within a few miles</option>
-                                <option value="16094">within 10 miles</option>
-                                <option value="32200">within 20 miles</option>
-                            }
-                            else if ((int)Session["Radius"] == 16094)
-                            {
-                                <option value="8050">within a few miles</option>
-                                <option selected value="16094">within 10 miles</option>
-                                <option value="32200">within 20 miles</option>
-                            }
-                            else if ((int)Session["Radius"] == 32200)
-                            {
-                                <option value="8050">within a few miles</option>
-                                <option value="16094">within 10 miles</option>
-                                <option selected value="32200">within 20 miles</option>
-                            }
-                        }
-
-                    </select>
-                </label>
-
-                <input type="submit" value="Search" class="btn btn-primary" />
-            </form>
-        </div>
-
-
-        @if (ViewBag.Data.Count == 0)
-        {
-            <div class="container text-center">
-                <h1><em>No Results</em></h1>
-            </div>
-        }
-        else
-        {
-            <div class="form-group">
-                <table class="table table-bordered">
-                    <tr>
-                        <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="20%"><img src="~/Content/QP1.png" style="height:25px; width:auto;" /></th>
-                        <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="20%"><img src="~/Content/QP2.png" style="height:25px; width:auto;" /></th>
-                        <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="20%"><img src="~/Content/QP3.png" style="height:25px; width:auto;" /></th>
-                        <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="20%"><img src="~/Content/QP4.png" style="height:25px; width:auto;" /></th>
-                        <th style="text-align: center; vertical-align: auto; background-color:lightgray;" width="20%"><img src="~/Content/QP5.png" style="height:25px; width:auto;" /></th>
-                    </tr>
-
-                    <tr>
-                        <td style="text-align: center; vertical-align: auto; background-color:lightgray;">extremely quiet</td>
-                        <td style="text-align: center; vertical-align: auto; background-color:lightgray;">pretty quiet</td>
-                        <td style="text-align: center; vertical-align: auto; background-color:lightgray;">average</td>
-                        <td style="text-align: center; vertical-align: auto; background-color:lightgray;">loud</td>
-                        <td style="text-align: center; vertical-align: auto; background-color:lightgray;">extremely loud</td>
-                    </tr>
-                </table>
-            </div>
-
-            <table class="table" id="resultsTable">
-                <tr>
-                    <th style="text-align: center; vertical-align: auto;">@*Image*@</th>
-                    <th style="text-align: center; vertical-align: auto; ">@*Business*@</th>
-                    <th style="text-align: center; vertical-align: auto;">@*Address*@</th>
-                    <th style="text-align: center; vertical-align: auto;">
-                        <a href="#" onClick="sortTable()"><img src="~/Content/down.png" style="height: 20px; width: auto" /></a>
-                        <a href="#" onClick="sortTable2()"><img src="~/Content/up.png" style="height: 20px; width: auto" /></a>
-                    </th>
-                </tr>
-
-
-
-
-
-                @for (int i = 0; i < ViewBag.Data.Count; i++)
-
+<div class="jumbotron">
+    <div class="container text-center">
+        <form action="~/Home/Search" group="form-group" method="get">
+            <label>
+                <input type="text" name="name" class="form-control" placeholder="Business Name" style="width: 150px;" />
+            </label>
+            <label>
+                <input type="text" name="location" value="@Session["Location"]" class="form-control" placeholder="City, State" style="width: 150px;" />
+            </label>
+            <label>
+                @if ((int)Session["Zipcode"] == 0)
                 {
-
-                    <tr>
-                        <td>
-                            @if (ViewBag.Data[i].image_url == "")
-                            {
-                                <img src="~/Content/QPLogoBlack.png" style="height:100px; width:auto;" />
-                            }
-                            else
-                            {
-                                <img src="@ViewBag.Data[i].image_url" style="height:100px; width:100px; border-radius:100%; border: 1px solid black;" /><br />
-                            }
-                        </td>
-                        <td style="text-align: center; vertical-align: auto;"><a href="~/Home/Details/@ViewBag.Data[i].id">@ViewBag.Data[i].name</a></td>
-                        <td style="text-align: center; vertical-align: auto;">
-                            @ViewBag.Data[i]["location"]["address1"], @ViewBag.Data[i]["location"]["city"],
-                            @ViewBag.Data[i]["location"]["state"], @ViewBag.Data[i]["location"]["zip_code"]
-                        </td>
-                        <td>
-                            <!--Logic for the wall score goes here-->
-                            @{
-                                ThinWallsEntities db = new ThinWallsEntities(); //pulls info from db
-
-
-                                var scoreKey = ViewBag.Data[i].id.Value;
-                                string id = ViewBag.Data[i].id.Value;
-
-                                List<Review> count = (from s in db.Reviews
-                                                      where s.YelpID == (id)
-                                                      select s).ToList();
-                            }
-                            @if (ViewBag.Scores.ContainsKey(scoreKey))
-                            {
-                                <text>
-                                    @if ((@ViewBag.Scores[scoreKey] / count.Count) == 5)
-                                    {
-                                        <img src="~/Content/QP1.png" style="height:100px; width:auto;" />
-                                    }
-                                    else if ((@ViewBag.Scores[scoreKey] / count.Count) == 4)
-                                    {
-                                        <img src="~/Content/QP2.png" style="height:100px; width:auto;" />
-                                    }
-                                    else if ((@ViewBag.Scores[scoreKey] / count.Count) == 3)
-                                    {
-                                        <img src="~/Content/QP3.png" style="height:100px; width:auto;" />
-                                    }
-                                    else if ((@ViewBag.Scores[scoreKey] / count.Count) == 2)
-                                    {
-                                        <img src="~/Content/QP4.png" style="height:100px; width:auto;" />
-                                    }
-                                    else if ((@ViewBag.Scores[scoreKey] / count.Count) == 1)
-                                    {
-                                        <img src="~/Content/QP5.png" style="height:100px; width:auto;" />
-                                    }
-
-                                </text>
-                            }
-                            else
-                            {
-                                <p><em>No Rating</em></p>
-                            }
-
-                    </tr>
+                    <input type="text" name="zipcode" class="form-control" placeholder="ZipCode" style="width: 150px;" />
                 }
-            </table>
-        }
+                else
+                {
+                    <input type="text" name="zipcode" value="@Session["Zipcode"]" class="form-control" placeholder="ZipCode" style="width: 150px;" />
+                }
+            </label>
 
+            <label>
+                <select name="category" style="width: 130px; background-color: lightgray;">
+
+                    @if (Session["Category"] != null)
+                    {
+                        if ((string)Session["Category"] == "all")
+                        {
+                            <option selected value="all">all</option>
+                            <option value="apartments">apartments</option>
+                            <option value="hotels">hotels</option>
+                            <option value="restaurants">restaurants</option>
+                            <option value="cafes">cafes</option>
+
+                        }
+                        else if ((string)Session["Category"] == "apartments")
+                        {
+                            <option value="all">all</option>
+                            <option selected value="apartments">apartments</option>
+                            <option value="hotels">hotels</option>
+                            <option value="restaurants">restaurants</option>
+                            <option value="cafes">cafes</option>
+
+                        }
+                        else if ((string)Session["Category"] == "hotels")
+                        {
+                            <option value="all">all</option>
+                            <option value="apartments">apartments</option>
+                            <option selected value="hotels">hotels</option>
+                            <option value="restaurants">restaurants</option>
+                            <option value="cafes">cafes</option>
+
+                        }
+                        else if ((string)Session["Category"] == "restaurants")
+                        {
+                            <option value="all">all</option>
+                            <option value="apartments">apartments</option>
+                            <option value="hotels">hotels</option>
+                            <option selected value="restaurants">restaurants</option>
+                            <option value="cafes">cafes</option>
+
+                        }
+                        else if ((string)Session["Category"] == "cafes")
+                        {
+                            <option value="all">all</option>
+                            <option value="apartments">apartments</option>
+                            <option value="hotels">hotels</option>
+                            <option value="restaurants">restaurants</option>
+                            <option selected value="cafes">cafes</option>
+                        }
+                    }
+                </select>
+            </label>
+            <label>
+                <select name="radius" style="width: 200px; background-color: lightgray;">
+
+                    @if (Session["Radius"] != null)
+                    {
+                        if ((int)Session["Radius"] == 8050)
+                        {
+                            <option selected value="8050">within a few miles</option>
+                            <option value="16094">within 10 miles</option>
+                            <option value="32200">within 20 miles</option>
+                        }
+                        else if ((int)Session["Radius"] == 16094)
+                        {
+                            <option value="8050">within a few miles</option>
+                            <option selected value="16094">within 10 miles</option>
+                            <option value="32200">within 20 miles</option>
+                        }
+                        else if ((int)Session["Radius"] == 32200)
+                        {
+                            <option value="8050">within a few miles</option>
+                            <option value="16094">within 10 miles</option>
+                            <option selected value="32200">within 20 miles</option>
+                        }
+                    }
+
+                </select>
+            </label>
+
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </form>
     </div>
 
-}
-       
+
+    @if (ViewBag.Data.Count == 0)
+    {
+        <div class="container text-center">
+            <h1><em>No Results</em></h1>
+        </div>
+    }
+    else
+    {
+        
+
+        <table class="table" id="resultsTable">
+            <tr>
+                <th style="text-align: center; vertical-align: auto;">@*Image*@</th>
+                <th style="text-align: center; vertical-align: auto; ">@*Business*@</th>
+                <th style="text-align: center; vertical-align: auto;">@*Address*@</th>
+                <th style="text-align: center; vertical-align: auto;">
+                    <a href="#" onClick="sortTable()"><img src="~/Content/down.png" style="height: 20px; width: auto" /></a>
+                    <a href="#" onClick="sortTable2()"><img src="~/Content/up.png" style="height: 20px; width: auto" /></a>
+                </th>
+            </tr>
 
 
 
 
+
+            @for (int i = 0; i < ViewBag.Data.Count; i++)
+
+            {
+
+                <tr>
+                    <td>
+                        @if (ViewBag.Data[i].image_url == "")
+                        {
+                            <img src="~/Content/QPLogoBlack.png" style="height:100px; width:auto;" />
+                        }
+                        else
+                        {
+                            <img src="@ViewBag.Data[i].image_url" style="height:100px; width:100px; border-radius:100%; border: 1px solid black;" /><br />
+                        }
+                    </td>
+                    <td style="text-align: center; vertical-align: auto;"><a href="~/Home/Details/@ViewBag.Data[i].id">@ViewBag.Data[i].name</a></td>
+                    <td style="text-align: left; vertical-align: auto;">
+                        @ViewBag.Data[i]["location"]["address1"], @ViewBag.Data[i]["location"]["city"],
+                        @ViewBag.Data[i]["location"]["state"], @ViewBag.Data[i]["location"]["zip_code"]
+                    </td>
+                    <td>
+                        <!--Logic for the wall score goes here-->
+                        @{
+                            ThinWallsEntities db = new ThinWallsEntities(); //pulls info from db
+
+
+                            var scoreKey = ViewBag.Data[i].id.Value;
+                            string id = ViewBag.Data[i].id.Value;
+
+                            List<Review> count = (from s in db.Reviews
+                                                  where s.YelpID == (id)
+                                                  select s).ToList();
+                        }
+                        @if (ViewBag.Scores.ContainsKey(scoreKey))
+                        {
+                            <text>
+                                @if ((@ViewBag.Scores[scoreKey] / count.Count) == 5)
+                                {
+                                    <img src="~/Content/QP1.png" style="height:100px; width:auto;" />
+                                }
+                                else if ((@ViewBag.Scores[scoreKey] / count.Count) == 4)
+                                {
+                                    <img src="~/Content/QP2.png" style="height:100px; width:auto;" />
+                                }
+                                else if ((@ViewBag.Scores[scoreKey] / count.Count) == 3)
+                                {
+                                    <img src="~/Content/QP3.png" style="height:100px; width:auto;" />
+                                }
+                                else if ((@ViewBag.Scores[scoreKey] / count.Count) == 2)
+                                {
+                                    <img src="~/Content/QP4.png" style="height:100px; width:auto;" />
+                                }
+                                else if ((@ViewBag.Scores[scoreKey] / count.Count) == 1)
+                                {
+                                    <img src="~/Content/QP5.png" style="height:100px; width:auto;" />
+                                }
+
+                            </text>
+                        }
+                        else
+                        {
+                            <p><em>No Rating</em></p>
+                        }
+
+                </tr>
+            }
+        </table>
+    }
+
+</div>
 
 <script>
     function sortTable() {
