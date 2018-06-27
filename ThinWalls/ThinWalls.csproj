@@ -258,6 +258,7 @@
     <Content Include="Content\QPLogoWhite2.png" />
     <Content Include="Content\styles.css" />
     <Content Include="Content\up.png" />
+    <Content Include="Content\yelp.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

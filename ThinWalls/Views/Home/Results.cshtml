@@ -12,7 +12,7 @@
     <div class="container text-center">
         <form action="~/Home/Search" group="form-group" method="get">
             <label>
-                <input type="text" name="name" class="form-control" placeholder="Business Name" style="width: 150px;" />
+                <input type="text" name="name" value="@Session["Name"]" class="form-control" placeholder="Business Name" style="width: 150px;" />
             </label>
             <label>
                 <input type="text" name="location" value="@Session["Location"]" class="form-control" placeholder="City, State" style="width: 150px;" />
@@ -120,15 +120,14 @@
         </div>
     }
     else
-    {
-        
+    {       
 
-        <table class="table" id="resultsTable">
+        <table class="table table-borderless table-condensed table-hover" id="resultsTable">
             <tr>
                 <th width ="10%" style="text-align: center; vertical-align: auto;">@*Image*@</th>
                 <th width ="40%" style="text-align: center; vertical-align: auto; ">@*Business*@</th>
                 <th width ="40%" style="text-align: center; vertical-align: auto;">@*Address*@</th>
-                <th width ="10%" style="text-align: center; vertical-align: auto;">
+                <th width ="10%" style="text-align: left; vertical-align: auto;">
                     <a href="#" onClick="sortTable()"><img src="~/Content/down.png" style="height: 20px; width: auto" /></a>
                     <a href="#" onClick="sortTable2()"><img src="~/Content/up.png" style="height: 20px; width: auto" /></a>
                 </th>

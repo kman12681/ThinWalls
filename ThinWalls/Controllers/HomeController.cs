@@ -24,7 +24,7 @@ namespace ThinWalls.Controllers
         public ActionResult Search(string name = "", string location = "", int zipcode = 0, string category = "all", int radius = 10000)
 
         {
-
+            Session["Name"] = name;
             Session["Location"] = location;
             Session["Zipcode"] = zipcode;
             Session["Category"] = category;

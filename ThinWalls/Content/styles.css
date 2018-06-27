@@ -17,3 +17,8 @@ footer {
 #score{
     display: inline-block;
 }
+
+.table-borderless td,
+.table-borderless th {
+    border: 0 !important;
+}
