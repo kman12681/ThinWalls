@@ -2,27 +2,29 @@
     ViewBag.Title = "Home";
 }
 
+<link rel="stylesheet" href="~/Content/styles.css">
 
 
-<div class="jumbotron">
-    <div class="container text-center">
-        <span>(find your)</span><br/> <img src="~/Content/QPLogoBlack.png" style="height: 150px; width: auto;" /><br/>
+<div id="searchPage">        
+        @*<span>(find your)</span><br />*@
+    <img src="~/Content/QPLogoBlack.png" style="height: 150px; width: auto;" /><br />
         &nbsp;
+    <p id="tagline"><em>Find your quiet place &trade;</em></p>
 
         <form action="~/Home/Search" group="form-group" method="get">
             <label>
                 <input type="text" name="name" class="form-control" placeholder="Business Name" style="width: 150px;" />
-            </label> 
+            </label>
             <label>
                 <input type="text" name="location" class="form-control" placeholder="City, State" style="width: 150px;" />
-            </label> 
+            </label>
             <label>
                 <input type="text" name="zipcode" value="48226" class="form-control" placeholder="ZipCode" style="width: 150px;" />
-            </label> 
+            </label>
 
             <label>
                 <select name="category" style="width: 130px; background-color: lightgray;">
-                    <option disabled selected value="">all</option>                    
+                    <option disabled selected value="">all</option>
                     <option value="apartments">apartments</option>
                     <option value="hotels">hotels</option>
                     <option value="restaurants">restaurants</option>
@@ -30,7 +32,7 @@
                 </select>
             </label>
             <label>
-                <select name="radius" style="width: 200px; background-color: lightgray;">                    
+                <select name="radius" style="width: 200px; background-color: lightgray;">
                     <option value="8050">within a few miles</option>
                     <option value="16094">within 10 miles</option>
                     <option value="32200">within 20 miles</option>
@@ -38,8 +40,7 @@
             </label>
             <input type="submit" value="Search" class="btn btn-primary" />
         </form>
-    </div>
+     
 </div>
-
 
 

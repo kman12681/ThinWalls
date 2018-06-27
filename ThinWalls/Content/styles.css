@@ -1,0 +1,19 @@
+﻿body{
+    background-image:url(clouds.jpg);
+}
+#searchPage{
+    text-align: center;
+    padding-top: 90px;
+}
+#tagline{
+    color: white;
+}
+.jumbotron {
+    background-color: white !important;
+}
+footer {
+    padding-top: 150px;
+}
+#score{
+    display: inline-block;
+}

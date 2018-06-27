@@ -5,6 +5,8 @@
     @ViewBag.Message
     ViewBag.Title = "Results";
 
+    <link rel="stylesheet" href="~/Content/styles.css">
+
     <div class="jumbotron">
         <div class="container text-center">
             <form action="~/Home/Search" group="form-group" method="get">
@@ -66,7 +68,7 @@
                                 <option value="hotels">hotels</option>
                                 <option value="restaurants">restaurants</option>
                                 <option selected value="cafes">cafes</option>
-                            }                          
+                            }
                         }
                     </select>
                 </label>
@@ -94,105 +96,113 @@
                                 <option selected value="32200">within 20 miles</option>
                             }
                         }
-                    
+
                     </select>
                 </label>
 
                 <input type="submit" value="Search" class="btn btn-primary" />
             </form>
         </div>
-    </div>
-
-    if (ViewBag.Data.Count == 0)
-    {
-        <div class="container text-center">
-            <h1><em>No Results</em></h1>
-        </div>
-    }
-    else
-    {
-        <table class="table table-bordered table table-striped" id="resultsTable">
-
-            <tr>
-                <th style="text-align: center; vertical-align: auto; background-color:lightgray;">Image</th>
-                <th style="text-align: center; vertical-align: auto; background-color:lightgray;">Business</th>
-                <th style="text-align: center; vertical-align: auto; background-color:lightgray;">Address</th>
-                <th style="text-align: center; vertical-align: auto; background-color:lightgray;">
-                    <a href="#" onClick="sortTable()"><img src="~/Content/down.png" style="height: 20px; width: auto" /></a>
-                    <a href="#" onClick="sortTable2()"><img src="~/Content/up.png" style="height: 20px; width: auto" /></a></th>
-
-</tr>
 
 
-            @for (int i = 0; i < ViewBag.Data.Count; i++)
+        @if (ViewBag.Data.Count == 0)
+        {
+            <div class="container text-center">
+                <h1><em>No Results</em></h1>
+            </div>
+        }
+        else
+        {
+            <table class="table table-bordered" id="resultsTable">
 
-            {
                 <tr>
-                    <td>
-                        @if (ViewBag.Data[i].image_url == "")
-                        {
-                            <img src="~/Content/QPLogoBlack.png" style="height:100px; width:auto;" />
-                        }
-                        else
-                        {
-                            <img src="@ViewBag.Data[i].image_url" style="height:100px; width:auto;" /><br />
-                        }
-                    </td>
-                    <td style="text-align: center; vertical-align: auto;"><a href="~/Home/Details/@ViewBag.Data[i].id">@ViewBag.Data[i].name</a></td>
-                    <td style="text-align: center; vertical-align: auto;">
-                        @ViewBag.Data[i]["location"]["address1"], @ViewBag.Data[i]["location"]["city"],
-                        @ViewBag.Data[i]["location"]["state"], @ViewBag.Data[i]["location"]["zip_code"]
-                    </td>
-                    <td>
-                        <!--Logic for the wall score goes here-->
-                        @{
-                            ThinWallsEntities db = new ThinWallsEntities(); //pulls info from db
+                    <th style="text-align: center; vertical-align: auto; background-color:lightgray;">Image</th>
+                    <th style="text-align: center; vertical-align: auto; background-color:lightgray;">Business</th>
+                    <th style="text-align: center; vertical-align: auto; background-color:lightgray;">Address</th>
+                    <th style="text-align: center; vertical-align: auto; background-color:lightgray;">
+                        <a href="#" onClick="sortTable()"><img src="~/Content/down.png" style="height: 20px; width: auto" /></a>
+                        <a href="#" onClick="sortTable2()"><img src="~/Content/up.png" style="height: 20px; width: auto" /></a>
+                    </th>
 
-
-                            var scoreKey = ViewBag.Data[i].id.Value;
-                            string id = ViewBag.Data[i].id.Value;
-
-                            List<Review> count = (from s in db.Reviews
-                                                  where s.YelpID == (id)
-                                                  select s).ToList();
-                        }
-                        @if (ViewBag.Scores.ContainsKey(scoreKey))
-                        {
-                            <text>
-                                @if ((@ViewBag.Scores[scoreKey] / count.Count) == 5)
-                                {
-                                    <img src="~/Content/QP1.png" style="height:100px; width:auto;" />
-                                }
-                                else if ((@ViewBag.Scores[scoreKey] / count.Count) == 4)
-                                {
-                                    <img src="~/Content/QP2.png" style="height:100px; width:auto;" />
-                                }
-                                else if ((@ViewBag.Scores[scoreKey] / count.Count) == 3)
-                                {
-                                    <img src="~/Content/QP3.png" style="height:100px; width:auto;" />
-                                }
-                                else if ((@ViewBag.Scores[scoreKey] / count.Count) == 2)
-                                {
-                                    <img src="~/Content/QP4.png" style="height:100px; width:auto;" />
-                                }
-                                else if ((@ViewBag.Scores[scoreKey] / count.Count) == 1)
-                                {
-                                    <img src="~/Content/QP5.png" style="height:100px; width:auto;" />
-                                }
-
-                            </text>
-                        }
-                        else
-                        {
-                            <p><em>No Rating</em></p>
-                        }
-                                           
                 </tr>
-            }
-            
-        </table>
-       }
+
+
+                @for (int i = 0; i < ViewBag.Data.Count; i++)
+
+                {
+                    <tr>
+                        <td>
+                            @if (ViewBag.Data[i].image_url == "")
+                            {
+                                <img src="~/Content/QPLogoBlack.png" style="height:100px; width:auto;" />
+                            }
+                            else
+                            {
+                                <img src="@ViewBag.Data[i].image_url" style="height:100px; width:auto;" /><br />
+                            }
+                        </td>
+                        <td style="text-align: center; vertical-align: auto;"><a href="~/Home/Details/@ViewBag.Data[i].id">@ViewBag.Data[i].name</a></td>
+                        <td style="text-align: center; vertical-align: auto;">
+                            @ViewBag.Data[i]["location"]["address1"], @ViewBag.Data[i]["location"]["city"],
+                            @ViewBag.Data[i]["location"]["state"], @ViewBag.Data[i]["location"]["zip_code"]
+                        </td>
+                        <td>
+                            <!--Logic for the wall score goes here-->
+                            @{
+                                ThinWallsEntities db = new ThinWallsEntities(); //pulls info from db
+
+
+                                var scoreKey = ViewBag.Data[i].id.Value;
+                                string id = ViewBag.Data[i].id.Value;
+
+                                List<Review> count = (from s in db.Reviews
+                                                      where s.YelpID == (id)
+                                                      select s).ToList();
+                            }
+                            @if (ViewBag.Scores.ContainsKey(scoreKey))
+                            {
+                                <text>
+                                    @if ((@ViewBag.Scores[scoreKey] / count.Count) == 5)
+                                    {
+                                        <img src="~/Content/QP1.png" style="height:100px; width:auto;" />
+                                    }
+                                    else if ((@ViewBag.Scores[scoreKey] / count.Count) == 4)
+                                    {
+                                        <img src="~/Content/QP2.png" style="height:100px; width:auto;" />
+                                    }
+                                    else if ((@ViewBag.Scores[scoreKey] / count.Count) == 3)
+                                    {
+                                        <img src="~/Content/QP3.png" style="height:100px; width:auto;" />
+                                    }
+                                    else if ((@ViewBag.Scores[scoreKey] / count.Count) == 2)
+                                    {
+                                        <img src="~/Content/QP4.png" style="height:100px; width:auto;" />
+                                    }
+                                    else if ((@ViewBag.Scores[scoreKey] / count.Count) == 1)
+                                    {
+                                        <img src="~/Content/QP5.png" style="height:100px; width:auto;" />
+                                    }
+
+                                </text>
+                            }
+                            else
+                            {
+                                <p><em>No Rating</em></p>
+                            }
+
+                    </tr>
+                }
+
+
+
+
+            </table>
+        }
+    </div>
 }
+
+
+
 
 <script>
     function sortTable() {

@@ -4,14 +4,14 @@
 
     ViewBag.Title = "Details";
 }
-
+<link rel="stylesheet" href="~/Content/styles.css">
 &nbsp;
 <a href="javascript:history.back()">Back to Results</a>
 &nbsp;
 
 <div class="jumbotron">
     <div class="container text-center">
-        <h4>Quiet Place Meter (@ViewBag.Reviews.Count):</h4>
+        <h4>Quiet Place Meter (@ViewBag.Reviews.Count reviews):</h4>
 
         @{
 
@@ -68,99 +68,100 @@
             }
         </div>
     </div>
-</div>
 
-@if (ViewBag.Score != 0)
-{
 
-    <table class="table table-bordered">
-
-        <tr>
-            <th style="text-align: center; vertical-align: auto;">Quiet Place Certified Review</th>
-            <th style="text-align: center; vertical-align: auto;">Quiet Place Comment</th>
-            <th style="text-align: center; vertical-align: auto;">Quiet Place Meter</th>
-        </tr>
-
-        @for (int i = 0; i < ViewBag.Reviews.Count; i++)
-        {
-            <tr>
-                <td style="text-align: center; vertical-align: auto;">QP Reviewer @(i + 1)</td>
-                <td style="text-align: center; vertical-align: auto;">
-                    @if (@ViewBag.Reviews[i].Comment == null)
-                    {
-                        <p1><em>no comment</em></p1>
-                    }
-                    else
-                    {
-                        @ViewBag.Reviews[i].Comment
-                    }
-                </td>
-                <td style="text-align: center; vertical-align: auto;">
-
-                    @if (ViewBag.Reviews[i].WallScore == 5)
-                    {
-                        <img src="~/Content/QP1.png" style="height:35px; width:auto;" />
-                    }
-                    else if (ViewBag.Reviews[i].WallScore == 4)
-                    {
-                        <img src="~/Content/QP2.png" style="height:35px; width:auto;" />
-                    }
-                    else if (ViewBag.Reviews[i].WallScore == 3)
-                    {
-                        <img src="~/Content/QP3.png" style="height:35px; width:auto;" />
-                    }
-                    else if (ViewBag.Reviews[i].WallScore == 2)
-                    {
-                        <img src="~/Content/QP4.png" style="height:35px; width:auto;" />
-                    }
-                    else if (ViewBag.Reviews[i].WallScore == 1)
-                    {
-                        <img src="~/Content/QP5.png" style="height:35px; width:auto;" />
-                    }
-                </td>
-            </tr>
-        }
-    </table>
-
-    <div class="container text-center">
-        <form action="~/Reviews/Create">
-            <input type="hidden" value="@ViewBag.Data.id" id="id" name="id" />
-            <input type="hidden" value="@ViewBag.Data.name" id="name" name="name" />
-            <input type="submit" value="Add a Review" class="btn btn-primary" onclick="return AlreadyReviewed()" />
-        </form>
-    </div>
-}
-
-@foreach (var r in ViewBag.YelpReviews)
-{
-
-    string yelpReview = (string)r.text;
-    string yelpReviewLower = yelpReview.ToLower();
-    if (yelpReviewLower.Contains("noise") || (yelpReviewLower.Contains("sound")) || (yelpReviewLower.Contains("loud")) || (yelpReviewLower.Contains("quiet")) || (yelpReviewLower.Contains("yell")) || (yelpReviewLower.Contains("whisper")) || (yelpReviewLower.Contains("shout")))
+    @if (ViewBag.Score != 0)
     {
 
-        <h3>Yelpers Are Saying:</h3>
+        <table class="table table-bordered">
 
-        <table class="table table-bordered table table-condensed">
             <tr>
-                <th style="text-align: center; vertical-align: auto;">User</th>
-                <th style="text-align: center; vertical-align: auto;">Comment</th>
-                <th style="text-align: center; vertical-align: auto;">Yelp Rating</th>
+                <th style="text-align: center; vertical-align: auto;">Quiet Place Certified Review</th>
+                <th style="text-align: center; vertical-align: auto;">Quiet Place Comment</th>
+                <th style="text-align: center; vertical-align: auto;">Quiet Place Meter</th>
             </tr>
-            <tr>
-                <td><span><img src="@r.user.image_url" style="height:50px; width:auto;" />@r.user.name</span></td>
-                <td>
-                    @r.text
-                </td>
-                <td style="text-align: center; vertical-align: auto;">@r.rating</td>
-            </tr>
-        </table><br />
-        <p>View this business on <a href="@ViewBag.Data.url" target="_blank">Yelp</a></p>
+
+            @for (int i = 0; i < ViewBag.Reviews.Count; i++)
+            {
+                <tr>
+                    <td style="text-align: center; vertical-align: auto;">QP Reviewer @(i + 1)</td>
+                    <td style="text-align: center; vertical-align: auto;">
+                        @if (@ViewBag.Reviews[i].Comment == null)
+                        {
+                            <p1><em>no comment</em></p1>
+                        }
+                        else
+                        {
+                            @ViewBag.Reviews[i].Comment
+                        }
+                    </td>
+                    <td style="text-align: center; vertical-align: auto;">
+
+                        @if (ViewBag.Reviews[i].WallScore == 5)
+                        {
+                            <img src="~/Content/QP1.png" style="height:35px; width:auto;" />
+                        }
+                        else if (ViewBag.Reviews[i].WallScore == 4)
+                        {
+                            <img src="~/Content/QP2.png" style="height:35px; width:auto;" />
+                        }
+                        else if (ViewBag.Reviews[i].WallScore == 3)
+                        {
+                            <img src="~/Content/QP3.png" style="height:35px; width:auto;" />
+                        }
+                        else if (ViewBag.Reviews[i].WallScore == 2)
+                        {
+                            <img src="~/Content/QP4.png" style="height:35px; width:auto;" />
+                        }
+                        else if (ViewBag.Reviews[i].WallScore == 1)
+                        {
+                            <img src="~/Content/QP5.png" style="height:35px; width:auto;" />
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+
+        <div class="container text-center">
+            <form action="~/Reviews/Create">
+                <input type="hidden" value="@ViewBag.Data.id" id="id" name="id" />
+                <input type="hidden" value="@ViewBag.Data.name" id="name" name="name" />
+                <input type="submit" value="Add a Review" class="btn btn-primary" onclick="return AlreadyReviewed()" />
+            </form>
+        </div>
     }
-    <br />
+
+    @foreach (var r in ViewBag.YelpReviews)
+    {
+
+        string yelpReview = (string)r.text;
+        string yelpReviewLower = yelpReview.ToLower();
+        if (yelpReviewLower.Contains("noise") || (yelpReviewLower.Contains("sound")) || (yelpReviewLower.Contains("loud")) || (yelpReviewLower.Contains("quiet")) || (yelpReviewLower.Contains("yell")) || (yelpReviewLower.Contains("whisper")) || (yelpReviewLower.Contains("shout")))
+        {
+
+            <h3>Yelpers Are Saying:</h3>
+
+            <table class="table table-bordered table table-condensed">
+                <tr>
+                    <th style="text-align: center; vertical-align: auto;">User</th>
+                    <th style="text-align: center; vertical-align: auto;">Comment</th>
+                    <th style="text-align: center; vertical-align: auto;">Yelp Rating</th>
+                </tr>
+                <tr>
+                    <td><span><img src="@r.user.image_url" style="height:50px; width:auto;" />@r.user.name</span></td>
+                    <td>
+                        @r.text
+                    </td>
+                    <td style="text-align: center; vertical-align: auto;">@r.rating</td>
+                </tr>
+            </table><br />
+            <p>View this business on <a href="@ViewBag.Data.url" target="_blank">Yelp</a></p>
+        }
+        <br />
 
 
-}
+    }
+</div>
 <style>
     /* Set the size of the div element that contains the map */
     #map {

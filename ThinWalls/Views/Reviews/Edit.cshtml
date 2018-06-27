@@ -30,7 +30,7 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.WallScore, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.WallScore, "Rating", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.RadioButtonFor(model => model.WallScore, "5") <img src="~/Content/QP1.png" style="height:35px; width:auto;" />
                 @Html.RadioButtonFor(model => model.WallScore, "4") <img src="~/Content/QP2.png" style="height:35px; width:auto;" />
