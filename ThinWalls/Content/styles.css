@@ -1,20 +1,25 @@
-﻿body{
-    background-image:url(clouds.jpg);
+﻿body {
+    background-image: url(clouds.jpg);
 }
-#searchPage{
+
+#searchPage {
     text-align: center;
     padding-top: 90px;
 }
-#tagline{
-    color: white;
+
+#tagline {
+    color: lightblue;
 }
+
 .jumbotron {
     background-color: white !important;
 }
+
 footer {
     padding-top: 150px;
 }
-#score{
+
+#score {
     display: inline-block;
 }
 
@@ -22,3 +27,27 @@ footer {
 .table-borderless th {
     border: 0 !important;
 }
+
+#legendTable {
+    align-content: center;
+    display: none;
+    border-radius: 20px;
+    background-color: lightgray;
+    
+}
+
+#legendTable img{
+    width:20%;
+}
+
+.tableHead {
+    height: 50px;
+    width: auto;
+    text-align: center;
+}
+
+.tableData{
+    width: 20%;
+    text-align: center;
+}
+

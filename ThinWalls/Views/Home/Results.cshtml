@@ -29,7 +29,7 @@
             </label>
 
             <label>
-                <select name="category" style="width: 130px; background-color: lightgray;">
+                <select name="category" class="form-control" style="width: 130px;">
 
                     @if (Session["Category"] != null)
                     {
@@ -81,7 +81,7 @@
                 </select>
             </label>
             <label>
-                <select name="radius" style="width: 200px; background-color: lightgray;">
+                <select name="radius" class="form-control" style="width: 200px;">
 
                     @if (Session["Radius"] != null)
                     {
@@ -145,7 +145,7 @@
                     <td>
                         @if (ViewBag.Data[i].image_url == "")
                         {
-                            <img src="~/Content/QPLogoBlack.png" style="height:32px; width:auto;" />
+                            <img src="~/Content/QP3.png" style="height:100px; width:100px; border-radius:100%; border: 1px solid black;" />
                         }
                         else
                         {
