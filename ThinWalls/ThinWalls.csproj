@@ -256,6 +256,16 @@
     <Content Include="Content\QPLogoBlack.png" />
     <Content Include="Content\QPLogoWhite.png" />
     <Content Include="Content\QPLogoWhite2.png" />
+    <Content Include="Content\regular_0.png" />
+    <Content Include="Content\regular_1.png" />
+    <Content Include="Content\regular_1_half.png" />
+    <Content Include="Content\regular_2.png" />
+    <Content Include="Content\regular_2_half.png" />
+    <Content Include="Content\regular_3.png" />
+    <Content Include="Content\regular_3_half.png" />
+    <Content Include="Content\regular_4.png" />
+    <Content Include="Content\regular_4_half.png" />
+    <Content Include="Content\regular_5.png" />
     <Content Include="Content\styles.css" />
     <Content Include="Content\up.png" />
     <Content Include="Content\yelp.png" />

@@ -9,28 +9,31 @@
 
 &nbsp;
 
-<div class="form-group">
-    <table class="table table-borderless table-condensed">
-        <tr>
-            <th style="text-align: center; vertical-align: auto; " width="20%"><img src="~/Content/QP1.png" style="height:25px; width:auto;" /></th>
-            <th style="text-align: center; vertical-align: auto; " width="20%"><img src="~/Content/QP2.png" style="height:25px; width:auto;" /></th>
-            <th style="text-align: center; vertical-align: auto; " width="20%"><img src="~/Content/QP3.png" style="height:25px; width:auto;" /></th>
-            <th style="text-align: center; vertical-align: auto; " width="20%"><img src="~/Content/QP4.png" style="height:25px; width:auto;" /></th>
-            <th style="text-align: center; vertical-align: auto; " width="20%"><img src="~/Content/QP5.png" style="height:25px; width:auto;" /></th>
-        </tr>
+@*<div class="form-group">
+        <table class="table table-borderless table-condensed">
+            <tr>
+                <th style="text-align: center; vertical-align: auto; " width="20%"><img src="~/Content/QP1.png" style="height:25px; width:auto;" /></th>
+                <th style="text-align: center; vertical-align: auto; " width="20%"><img src="~/Content/QP2.png" style="height:25px; width:auto;" /></th>
+                <th style="text-align: center; vertical-align: auto; " width="20%"><img src="~/Content/QP3.png" style="height:25px; width:auto;" /></th>
+                <th style="text-align: center; vertical-align: auto; " width="20%"><img src="~/Content/QP4.png" style="height:25px; width:auto;" /></th>
+                <th style="text-align: center; vertical-align: auto; " width="20%"><img src="~/Content/QP5.png" style="height:25px; width:auto;" /></th>
+            </tr>
 
-        <tr>
-            <td style="text-align: center; vertical-align: auto; ">extremely quiet</td>
-            <td style="text-align: center; vertical-align: auto; ">pretty quiet</td>
-            <td style="text-align: center; vertical-align: auto; ">average</td>
-            <td style="text-align: center; vertical-align: auto; ">loud</td>
-            <td style="text-align: center; vertical-align: auto; ">extremely loud</td>
-        </tr>
-    </table>
-</div>
+            <tr>
+                <td style="text-align: center; vertical-align: auto; ">extremely quiet</td>
+                <td style="text-align: center; vertical-align: auto; ">pretty quiet</td>
+                <td style="text-align: center; vertical-align: auto; ">average</td>
+                <td style="text-align: center; vertical-align: auto; ">loud</td>
+                <td style="text-align: center; vertical-align: auto; ">extremely loud</td>
+            </tr>
+        </table>
+    </div>*@
 
 <div class="jumbotron">
     <div class="container text-center">
+        <div class="text-left">
+            <a href="javascript:history.back()">Back</a>
+        </div>
         <h4>Quiet Place Meter (@ViewBag.Reviews.Count reviews):</h4>
 
         @{
@@ -75,8 +78,8 @@
         <h3>
             @ViewBag.Data["location"]["address1"], @ViewBag.Data["location"]["city"],
             @ViewBag.Data["location"]["state"], @ViewBag.Data["location"]["zip_code"]
-        </h3><br/>
-       
+        </h3><br />
+
         <div>
             @if (ViewBag.Data.image_url == "")
             {
@@ -87,7 +90,7 @@
                 <img src="@ViewBag.Data.image_url" style="height:300px; width:300px; border-radius: 100%; border: 1px solid black;" /><br />
             }
         </div>
-    </div><br/>
+    </div><br />
 
 
     @if (ViewBag.Score != 0)
@@ -105,8 +108,8 @@
             @for (int i = 0; i < ViewBag.Reviews.Count; i++)
             {
                 <tr>
-                    <td style="text-align: center; vertical-align: auto;">QP Reviewer @(i + 1)</td>
-                    <td style="text-align: center; vertical-align: auto;">
+                    <td style="text-align: left; vertical-align: auto;">QP Reviewer @(i + 1)</td>
+                    <td style="text-align: left; vertical-align: auto;">
                         @if (@ViewBag.Reviews[i].Comment == null)
                         {
                             <p1><em>no comment</em></p1>
@@ -161,7 +164,7 @@
         if (yelpReviewLower.Contains("noise") || (yelpReviewLower.Contains("sound")) || (yelpReviewLower.Contains("loud")) || (yelpReviewLower.Contains("quiet")) || (yelpReviewLower.Contains("yell")) || (yelpReviewLower.Contains("whisper")) || (yelpReviewLower.Contains("shout")))
         {
 
-        <p><a href="@ViewBag.Data.url" target="_blank">View this business on <img src="~/Content/yelp.png" style="height: 30px; width: auto;" /></a></p>
+            <p><a href="@ViewBag.Data.url" target="_blank">View this business on <img src="~/Content/yelp.png" style="height: 30px; width: auto;" /></a></p>
 
             <table class="table table-borderless table-condensed table-hover">
                 <tr>
@@ -170,18 +173,63 @@
                     <th style="text-align: center; vertical-align: auto; background-color:lightcoral;" width="33%">Yelp Rating</th>
                 </tr>
                 <tr>
-                    <td><span><img src="@r.user.image_url" style="height:50px; width:auto;" />@r.user.name</span></td>
+                    <td><span><img src="@r.user.image_url" style="height:50px; width:auto;" />  @r.user.name</span></td>
                     <td>
                         @r.text
                     </td>
-                    <td style="text-align: center; vertical-align: auto;">@r.rating</td>
+                    <td style="text-align: center; vertical-align: auto;">
+                        @if (r.rating == 5)
+                        {
+                            <img src="~/Content/regular_5.png" />
+                        }
+                        else if (r.rating == 4.5)
+                        {
+                            <img src="~/Content/regular_4_half.png" />
+                        }
+                        else if (r.rating == 4)
+                        {
+                            <img src="~/Content/regular_4.png" />
+                        }
+                        else if (r.rating == 3.5)
+                        {
+                            <img src="~/Content/regular_3_half.png" />
+                        }
+                        else if (r.rating == 3)
+                        {
+                            <img src="~/Content/regular_3.png" />
+                        }
+                        else if (r.rating == 2.5)
+                        {
+                            <img src="~/Content/regular_2_half.png" />
+                        }
+                        else if (r.rating == 2)
+                        {
+                            <img src="~/Content/regular_2.png" />
+                        }
+                        else if (r.rating == 1.5)
+                        {
+                            <img src="~/Content/regular_1_half.png" />
+                        }
+                        else if (r.rating == 1)
+                        {
+                            <img src="~/Content/regular_1.png" />
+                        }
+                        else if (r.rating == 0)
+                        {
+                            <img src="~/Content/regular_0.png" />
+                        }
+                        else
+                        {
+                            @r.rating
+                        }
+
+                    </td>
                 </tr>
-            </table><br />            
+            </table><br />
         }
 
     }
-      
-    <a href="javascript:history.back()">Back</a>
+
 
 </div>
 
